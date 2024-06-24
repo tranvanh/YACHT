@@ -1,5 +1,0 @@
-/home/tranvanh/coding/pacman/root/CMakeFiles/Pacman.dir
-/home/tranvanh/coding/pacman/root/CMakeFiles/edit_cache.dir
-/home/tranvanh/coding/pacman/root/CMakeFiles/rebuild_cache.dir
-/home/tranvanh/coding/pacman/root/GuiLib/CMakeFiles/edit_cache.dir
-/home/tranvanh/coding/pacman/root/GuiLib/CMakeFiles/rebuild_cache.dir

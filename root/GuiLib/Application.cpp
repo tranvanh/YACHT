@@ -3,17 +3,25 @@
 #include "Renderer.h"
 #include "EventPoll.h"
 #include "Control.h"
-#include "Game.h"
+#include "../GameCore/Game.h"
 
 #include "SDL2/SDL.h"
 #include <cassert>
 #include <iostream>
 #include <thread>
 
+constexpr int WINDOW_X = 0;
+constexpr int WINDOW_Y = 2500;
+constexpr int WINDOW_W = 640;
+constexpr int WINDOW_H = 480;
+
+const char* NAME = "PACMAN VOLE";
+
 Application::Application() {
-    mMainWindow = new MainWindow("Test", 0, 2500, 640, 480);
+    mMainWindow = new MainWindow(NAME, WINDOW_X, WINDOW_Y, WINDOW_W, WINDOW_H);
     mGame = new Game;
     mRenderer = new Renderer(this);
+    installEventHandlers();
 }
 
 Application::~Application() {
@@ -23,23 +31,28 @@ Application::~Application() {
     SDL_Quit();
 }
 
-MainWindow& Application::getMainWindow()const{
+MainWindow& Application::getMainWindow()const {
     return *mMainWindow;
 }
 
-Game& Application::getGame()const{
+Game& Application::getGame()const {
     return *mGame;
 }
 
 void Application::run() {
     mMainWindow->show();
-    const auto onMove = [this](SDL_Keycode key){
-        mGame->onMove(key);
-    };
-    mEventPoll.setMoveHandler(onMove);
     std::thread eventPoll_thread(&EventPoll::run, &mEventPoll);
-    SDL_Delay(1000);
     while (mEventPoll.isRunning()) {
         mRenderer->update();
     }
+}
+
+void Application::installEventHandlers() {
+    const auto onKeyboard = [this](SDL_Keycode key) {
+        mGame->onKeyboard(key);
+        };
+
+    // \todo more universal approach with custom onKeyboard handles
+    // Have something like screenManager which switches the handler?
+    mEventPoll.setKeyboardHandler(onKeyboard);
 }

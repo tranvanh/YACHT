@@ -4,5 +4,5 @@
 
 class Control {
 public:
-    virtual void onMove(SDL_Keycode keysym) = 0;
+    virtual void onKeyboard(SDL_Keycode keysym) = 0;
 };

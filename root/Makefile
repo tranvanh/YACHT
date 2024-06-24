@@ -129,6 +129,30 @@ Pacman/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/build
 .PHONY : Pacman/fast
 
+GameCore/Game.o: GameCore/Game.cpp.o
+.PHONY : GameCore/Game.o
+
+# target to build an object file
+GameCore/Game.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GameCore/Game.cpp.o
+.PHONY : GameCore/Game.cpp.o
+
+GameCore/Game.i: GameCore/Game.cpp.i
+.PHONY : GameCore/Game.i
+
+# target to preprocess a source file
+GameCore/Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GameCore/Game.cpp.i
+.PHONY : GameCore/Game.cpp.i
+
+GameCore/Game.s: GameCore/Game.cpp.s
+.PHONY : GameCore/Game.s
+
+# target to generate assembly for a file
+GameCore/Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GameCore/Game.cpp.s
+.PHONY : GameCore/Game.cpp.s
+
 GuiLib/Application.o: GuiLib/Application.cpp.o
 .PHONY : GuiLib/Application.o
 
@@ -176,30 +200,6 @@ GuiLib/EventPoll.s: GuiLib/EventPoll.cpp.s
 GuiLib/EventPoll.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.s
 .PHONY : GuiLib/EventPoll.cpp.s
-
-GuiLib/Game.o: GuiLib/Game.cpp.o
-.PHONY : GuiLib/Game.o
-
-# target to build an object file
-GuiLib/Game.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o
-.PHONY : GuiLib/Game.cpp.o
-
-GuiLib/Game.i: GuiLib/Game.cpp.i
-.PHONY : GuiLib/Game.i
-
-# target to preprocess a source file
-GuiLib/Game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Game.cpp.i
-.PHONY : GuiLib/Game.cpp.i
-
-GuiLib/Game.s: GuiLib/Game.cpp.s
-.PHONY : GuiLib/Game.s
-
-# target to generate assembly for a file
-GuiLib/Game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Game.cpp.s
-.PHONY : GuiLib/Game.cpp.s
 
 GuiLib/MainWindow.o: GuiLib/MainWindow.cpp.o
 .PHONY : GuiLib/MainWindow.o
@@ -282,15 +282,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Pacman"
+	@echo "... GameCore/Game.o"
+	@echo "... GameCore/Game.i"
+	@echo "... GameCore/Game.s"
 	@echo "... GuiLib/Application.o"
 	@echo "... GuiLib/Application.i"
 	@echo "... GuiLib/Application.s"
 	@echo "... GuiLib/EventPoll.o"
 	@echo "... GuiLib/EventPoll.i"
 	@echo "... GuiLib/EventPoll.s"
-	@echo "... GuiLib/Game.o"
-	@echo "... GuiLib/Game.i"
-	@echo "... GuiLib/Game.s"
 	@echo "... GuiLib/MainWindow.o"
 	@echo "... GuiLib/MainWindow.i"
 	@echo "... GuiLib/MainWindow.s"

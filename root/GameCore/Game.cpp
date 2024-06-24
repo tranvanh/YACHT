@@ -7,7 +7,7 @@ Game::Game(){
     mCharacter->setPosition(50.f, 100.f);
 }
 
-void Game::onMove(SDL_Keycode key) {
+void Game::onKeyboard(SDL_Keycode key) {
     switch (key) {
     case SDLK_LEFT:
         std::cout << "left" << std::endl;

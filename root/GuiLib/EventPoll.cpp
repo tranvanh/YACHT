@@ -5,17 +5,16 @@
 
 void EventPoll::run() {
     mRunning = true;
-    // \todo Do proper event handling 
-    while (true) {
+    while (mRunning) {
         SDL_Event event;
-        while (SDL_PollEvent(&event)) {
-            // Handle each specific event
-            if (event.type == SDL_QUIT) {
+        if (SDL_PollEvent(&event)) {
+            switch (event.type) {
+            case SDL_QUIT:
                 mRunning = false;
-                return;
-            }
-            if (event.type == SDL_KEYDOWN) {
-                onMove(event.key.keysym.sym);
+                break;
+            case SDL_KEYDOWN:
+                onKeyboard(event.key.keysym.sym);
+                break;
             }
         }
     }

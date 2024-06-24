@@ -6,10 +6,10 @@
 
 class EventPoll {
 private:
-    std::atomic_bool mRunning = false;
-    std::function<void(SDL_Keycode)> onMove;
+    std::atomic<bool> mRunning = true;
+    std::function<void(SDL_Keycode)> onKeyboard;
 public:
     void run();
     bool isRunning(){return mRunning;}
-    void setMoveHandler(const std::function<void(SDL_Keycode)>& handler) {onMove = handler;}
+    void setKeyboardHandler(const std::function<void(SDL_Keycode)>& handler) {onKeyboard = handler;}
 };

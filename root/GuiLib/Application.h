@@ -18,4 +18,6 @@ public:
     void run();
     MainWindow& getMainWindow() const;
     Game& getGame() const;
+private:
+    void installEventHandlers();
 };

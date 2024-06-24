@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Control.h"
+#include "../GuiLib/Control.h"
 
 class Entity;
 
@@ -8,6 +8,6 @@ class Game : public Control {
     Entity* mCharacter;
 public:
     Game();
-    virtual void onMove(SDL_Keycode key) override;
+    virtual void onKeyboard(SDL_Keycode key) override;
     Entity& getMainCharacter() const;
 };

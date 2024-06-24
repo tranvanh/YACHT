@@ -1,14 +1,13 @@
 #include "Renderer.h"
 #include "MainWindow.h"
-#include "Game.h"
-#include "Entity.h"
+#include "../GameCore/Game.h"
+#include "../GameCore/Entity.h"
 #include "Application.h"
 
 #include "SDL2/SDL.h"
 
 Renderer::Renderer(Application* application) : mApplication(application) {
     mRenderer = SDL_CreateRenderer(mApplication->getMainWindow().getSDL(), -1, SDL_RENDERER_ACCELERATED);
-    SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 }
 
 void Renderer::update() {
