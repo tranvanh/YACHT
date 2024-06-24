@@ -1,7 +1,7 @@
 #include "Renderer.h"
 #include "MainWindow.h"
 #include "../GameCore/Game.h"
-#include "../GameCore/Entity.h"
+#include "../GameCore/Characters.h"
 #include "Application.h"
 
 #include "SDL2/SDL.h"
@@ -18,12 +18,12 @@ void Renderer::update() {
 }
 
 void Renderer::draw() {
-    const Entity& mc = mApplication->getGame().getMainCharacter();
+    const Player& mc = mApplication->getGame().getPlayer();
     SDL_Rect rectangle;
     rectangle.x = mc.position.x;
     rectangle.y = mc.position.y;
-    rectangle.w = 20;
-    rectangle.h = 20;
+    rectangle.w = mc.bbox.w;
+    rectangle.h = mc.bbox.h;
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderDrawRect(mRenderer, &rectangle);
 }

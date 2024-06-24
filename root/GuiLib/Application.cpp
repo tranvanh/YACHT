@@ -19,7 +19,7 @@ const char* NAME = "PACMAN VOLE";
 
 Application::Application() {
     mMainWindow = new MainWindow(NAME, WINDOW_X, WINDOW_Y, WINDOW_W, WINDOW_H);
-    mGame = new Game;
+    mGame = new Game(*this);
     mRenderer = new Renderer(this);
     installEventHandlers();
 }

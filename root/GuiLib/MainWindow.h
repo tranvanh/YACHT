@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility>
+
 class SDL_Window;
 
 class MainWindow
@@ -13,4 +15,5 @@ public:
 
     void show();
     SDL_Window* getSDL() const;
+    std::pair<int, int> getWindowSize();
 };
