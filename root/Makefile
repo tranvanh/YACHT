@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tranvanh/coding/pacman
+CMAKE_SOURCE_DIR = /home/tranvanh/coding/pacman/root
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tranvanh/coding/pacman
+CMAKE_BINARY_DIR = /home/tranvanh/coding/pacman/root
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/CMakeFiles /home/tranvanh/coding/pacman//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/root/CMakeFiles /home/tranvanh/coding/pacman/root//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/root/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -153,6 +153,54 @@ GuiLib/Application.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Application.cpp.s
 .PHONY : GuiLib/Application.cpp.s
 
+GuiLib/EventPoll.o: GuiLib/EventPoll.cpp.o
+.PHONY : GuiLib/EventPoll.o
+
+# target to build an object file
+GuiLib/EventPoll.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o
+.PHONY : GuiLib/EventPoll.cpp.o
+
+GuiLib/EventPoll.i: GuiLib/EventPoll.cpp.i
+.PHONY : GuiLib/EventPoll.i
+
+# target to preprocess a source file
+GuiLib/EventPoll.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.i
+.PHONY : GuiLib/EventPoll.cpp.i
+
+GuiLib/EventPoll.s: GuiLib/EventPoll.cpp.s
+.PHONY : GuiLib/EventPoll.s
+
+# target to generate assembly for a file
+GuiLib/EventPoll.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.s
+.PHONY : GuiLib/EventPoll.cpp.s
+
+GuiLib/Game.o: GuiLib/Game.cpp.o
+.PHONY : GuiLib/Game.o
+
+# target to build an object file
+GuiLib/Game.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o
+.PHONY : GuiLib/Game.cpp.o
+
+GuiLib/Game.i: GuiLib/Game.cpp.i
+.PHONY : GuiLib/Game.i
+
+# target to preprocess a source file
+GuiLib/Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Game.cpp.i
+.PHONY : GuiLib/Game.cpp.i
+
+GuiLib/Game.s: GuiLib/Game.cpp.s
+.PHONY : GuiLib/Game.s
+
+# target to generate assembly for a file
+GuiLib/Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Game.cpp.s
+.PHONY : GuiLib/Game.cpp.s
+
 GuiLib/MainWindow.o: GuiLib/MainWindow.cpp.o
 .PHONY : GuiLib/MainWindow.o
 
@@ -176,6 +224,30 @@ GuiLib/MainWindow.s: GuiLib/MainWindow.cpp.s
 GuiLib/MainWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.s
 .PHONY : GuiLib/MainWindow.cpp.s
+
+GuiLib/Renderer.o: GuiLib/Renderer.cpp.o
+.PHONY : GuiLib/Renderer.o
+
+# target to build an object file
+GuiLib/Renderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o
+.PHONY : GuiLib/Renderer.cpp.o
+
+GuiLib/Renderer.i: GuiLib/Renderer.cpp.i
+.PHONY : GuiLib/Renderer.i
+
+# target to preprocess a source file
+GuiLib/Renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.i
+.PHONY : GuiLib/Renderer.cpp.i
+
+GuiLib/Renderer.s: GuiLib/Renderer.cpp.s
+.PHONY : GuiLib/Renderer.s
+
+# target to generate assembly for a file
+GuiLib/Renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pacman.dir/build.make CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.s
+.PHONY : GuiLib/Renderer.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -213,9 +285,18 @@ help:
 	@echo "... GuiLib/Application.o"
 	@echo "... GuiLib/Application.i"
 	@echo "... GuiLib/Application.s"
+	@echo "... GuiLib/EventPoll.o"
+	@echo "... GuiLib/EventPoll.i"
+	@echo "... GuiLib/EventPoll.s"
+	@echo "... GuiLib/Game.o"
+	@echo "... GuiLib/Game.i"
+	@echo "... GuiLib/Game.s"
 	@echo "... GuiLib/MainWindow.o"
 	@echo "... GuiLib/MainWindow.i"
 	@echo "... GuiLib/MainWindow.s"
+	@echo "... GuiLib/Renderer.o"
+	@echo "... GuiLib/Renderer.i"
+	@echo "... GuiLib/Renderer.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

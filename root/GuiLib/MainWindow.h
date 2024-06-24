@@ -1,3 +1,4 @@
+#pragma once
 
 class SDL_Window;
 
@@ -11,4 +12,5 @@ public:
     ~MainWindow();
 
     void show();
+    SDL_Window* getSDL() const;
 };

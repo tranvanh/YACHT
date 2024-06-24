@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tranvanh/coding/pacman
+CMAKE_SOURCE_DIR = /home/tranvanh/coding/pacman/root
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tranvanh/coding/pacman
+CMAKE_BINARY_DIR = /home/tranvanh/coding/pacman/root
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Pacman.dir/depend.make
@@ -72,60 +72,108 @@ include CMakeFiles/Pacman.dir/flags.make
 CMakeFiles/Pacman.dir/main.cpp.o: CMakeFiles/Pacman.dir/flags.make
 CMakeFiles/Pacman.dir/main.cpp.o: main.cpp
 CMakeFiles/Pacman.dir/main.cpp.o: CMakeFiles/Pacman.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Pacman.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/main.cpp.o -MF CMakeFiles/Pacman.dir/main.cpp.o.d -o CMakeFiles/Pacman.dir/main.cpp.o -c /home/tranvanh/coding/pacman/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/root/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Pacman.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/main.cpp.o -MF CMakeFiles/Pacman.dir/main.cpp.o.d -o CMakeFiles/Pacman.dir/main.cpp.o -c /home/tranvanh/coding/pacman/root/main.cpp
 
 CMakeFiles/Pacman.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pacman.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/main.cpp > CMakeFiles/Pacman.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/root/main.cpp > CMakeFiles/Pacman.dir/main.cpp.i
 
 CMakeFiles/Pacman.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pacman.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/main.cpp -o CMakeFiles/Pacman.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/root/main.cpp -o CMakeFiles/Pacman.dir/main.cpp.s
 
 CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o: CMakeFiles/Pacman.dir/flags.make
 CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o: GuiLib/Application.cpp
 CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o: CMakeFiles/Pacman.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o -MF CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o.d -o CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o -c /home/tranvanh/coding/pacman/GuiLib/Application.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/root/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o -MF CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o.d -o CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o -c /home/tranvanh/coding/pacman/root/GuiLib/Application.cpp
 
 CMakeFiles/Pacman.dir/GuiLib/Application.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pacman.dir/GuiLib/Application.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/GuiLib/Application.cpp > CMakeFiles/Pacman.dir/GuiLib/Application.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/root/GuiLib/Application.cpp > CMakeFiles/Pacman.dir/GuiLib/Application.cpp.i
 
 CMakeFiles/Pacman.dir/GuiLib/Application.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pacman.dir/GuiLib/Application.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/GuiLib/Application.cpp -o CMakeFiles/Pacman.dir/GuiLib/Application.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/root/GuiLib/Application.cpp -o CMakeFiles/Pacman.dir/GuiLib/Application.cpp.s
+
+CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o: CMakeFiles/Pacman.dir/flags.make
+CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o: GuiLib/EventPoll.cpp
+CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o: CMakeFiles/Pacman.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/root/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o -MF CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o.d -o CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o -c /home/tranvanh/coding/pacman/root/GuiLib/EventPoll.cpp
+
+CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/root/GuiLib/EventPoll.cpp > CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.i
+
+CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/root/GuiLib/EventPoll.cpp -o CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.s
+
+CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o: CMakeFiles/Pacman.dir/flags.make
+CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o: GuiLib/Game.cpp
+CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o: CMakeFiles/Pacman.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/root/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o -MF CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o.d -o CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o -c /home/tranvanh/coding/pacman/root/GuiLib/Game.cpp
+
+CMakeFiles/Pacman.dir/GuiLib/Game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pacman.dir/GuiLib/Game.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/root/GuiLib/Game.cpp > CMakeFiles/Pacman.dir/GuiLib/Game.cpp.i
+
+CMakeFiles/Pacman.dir/GuiLib/Game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pacman.dir/GuiLib/Game.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/root/GuiLib/Game.cpp -o CMakeFiles/Pacman.dir/GuiLib/Game.cpp.s
 
 CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o: CMakeFiles/Pacman.dir/flags.make
 CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o: GuiLib/MainWindow.cpp
 CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o: CMakeFiles/Pacman.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o -MF CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o.d -o CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o -c /home/tranvanh/coding/pacman/GuiLib/MainWindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/root/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o -MF CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o.d -o CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o -c /home/tranvanh/coding/pacman/root/GuiLib/MainWindow.cpp
 
 CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/GuiLib/MainWindow.cpp > CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/root/GuiLib/MainWindow.cpp > CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.i
 
 CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/GuiLib/MainWindow.cpp -o CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/root/GuiLib/MainWindow.cpp -o CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.s
+
+CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o: CMakeFiles/Pacman.dir/flags.make
+CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o: GuiLib/Renderer.cpp
+CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o: CMakeFiles/Pacman.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tranvanh/coding/pacman/root/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o -MF CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o.d -o CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o -c /home/tranvanh/coding/pacman/root/GuiLib/Renderer.cpp
+
+CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tranvanh/coding/pacman/root/GuiLib/Renderer.cpp > CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.i
+
+CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tranvanh/coding/pacman/root/GuiLib/Renderer.cpp -o CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.s
 
 # Object files for target Pacman
 Pacman_OBJECTS = \
 "CMakeFiles/Pacman.dir/main.cpp.o" \
 "CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o" \
-"CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o"
+"CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o" \
+"CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o" \
+"CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o" \
+"CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o"
 
 # External object files for target Pacman
 Pacman_EXTERNAL_OBJECTS =
 
 Pacman: CMakeFiles/Pacman.dir/main.cpp.o
 Pacman: CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o
+Pacman: CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o
+Pacman: CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o
 Pacman: CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o
+Pacman: CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o
 Pacman: CMakeFiles/Pacman.dir/build.make
 Pacman: CMakeFiles/Pacman.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tranvanh/coding/pacman/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Pacman"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tranvanh/coding/pacman/root/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Pacman"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Pacman.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -137,6 +185,6 @@ CMakeFiles/Pacman.dir/clean:
 .PHONY : CMakeFiles/Pacman.dir/clean
 
 CMakeFiles/Pacman.dir/depend:
-	cd /home/tranvanh/coding/pacman && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tranvanh/coding/pacman /home/tranvanh/coding/pacman /home/tranvanh/coding/pacman /home/tranvanh/coding/pacman /home/tranvanh/coding/pacman/CMakeFiles/Pacman.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tranvanh/coding/pacman/root && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tranvanh/coding/pacman/root /home/tranvanh/coding/pacman/root /home/tranvanh/coding/pacman/root /home/tranvanh/coding/pacman/root /home/tranvanh/coding/pacman/root/CMakeFiles/Pacman.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Pacman.dir/depend
 

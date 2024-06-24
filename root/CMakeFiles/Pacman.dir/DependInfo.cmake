@@ -8,9 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/tranvanh/coding/pacman/GuiLib/Application.cpp" "CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o" "gcc" "CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o.d"
-  "/home/tranvanh/coding/pacman/GuiLib/MainWindow.cpp" "CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o" "gcc" "CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o.d"
-  "/home/tranvanh/coding/pacman/main.cpp" "CMakeFiles/Pacman.dir/main.cpp.o" "gcc" "CMakeFiles/Pacman.dir/main.cpp.o.d"
+  "/home/tranvanh/coding/pacman/root/GuiLib/Application.cpp" "CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o" "gcc" "CMakeFiles/Pacman.dir/GuiLib/Application.cpp.o.d"
+  "/home/tranvanh/coding/pacman/root/GuiLib/EventPoll.cpp" "CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o" "gcc" "CMakeFiles/Pacman.dir/GuiLib/EventPoll.cpp.o.d"
+  "/home/tranvanh/coding/pacman/root/GuiLib/Game.cpp" "CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o" "gcc" "CMakeFiles/Pacman.dir/GuiLib/Game.cpp.o.d"
+  "/home/tranvanh/coding/pacman/root/GuiLib/MainWindow.cpp" "CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o" "gcc" "CMakeFiles/Pacman.dir/GuiLib/MainWindow.cpp.o.d"
+  "/home/tranvanh/coding/pacman/root/GuiLib/Renderer.cpp" "CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o" "gcc" "CMakeFiles/Pacman.dir/GuiLib/Renderer.cpp.o.d"
+  "/home/tranvanh/coding/pacman/root/main.cpp" "CMakeFiles/Pacman.dir/main.cpp.o" "gcc" "CMakeFiles/Pacman.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

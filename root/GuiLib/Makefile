@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tranvanh/coding/pacman
+CMAKE_SOURCE_DIR = /home/tranvanh/coding/pacman/root
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tranvanh/coding/pacman
+CMAKE_BINARY_DIR = /home/tranvanh/coding/pacman/root
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/tranvanh/coding/pacman && $(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/CMakeFiles /home/tranvanh/coding/pacman/GuiLib//CMakeFiles/progress.marks
-	cd /home/tranvanh/coding/pacman && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/CMakeFiles 0
+	cd /home/tranvanh/coding/pacman/root && $(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/root/CMakeFiles /home/tranvanh/coding/pacman/root/GuiLib//CMakeFiles/progress.marks
+	cd /home/tranvanh/coding/pacman/root && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tranvanh/coding/pacman/root/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/tranvanh/coding/pacman && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/clean
+	cd /home/tranvanh/coding/pacman/root && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,17 +103,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/tranvanh/coding/pacman && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/preinstall
+	cd /home/tranvanh/coding/pacman/root && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/tranvanh/coding/pacman && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/preinstall
+	cd /home/tranvanh/coding/pacman/root && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GuiLib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/tranvanh/coding/pacman && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/tranvanh/coding/pacman/root && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -135,6 +135,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/tranvanh/coding/pacman && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/tranvanh/coding/pacman/root && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/tranvanh/coding/pacman/GuiLib
+# Install script for directory: /home/tranvanh/coding/pacman/root/GuiLib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

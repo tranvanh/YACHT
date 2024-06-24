@@ -1,4 +1,4 @@
-# Install script for directory: /home/tranvanh/coding/pacman
+# Install script for directory: /home/tranvanh/coding/pacman/root
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/tranvanh/coding/pacman/GuiLib/cmake_install.cmake")
+  include("/home/tranvanh/coding/pacman/root/GuiLib/cmake_install.cmake")
 
 endif()
 
@@ -56,5 +56,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tranvanh/coding/pacman/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tranvanh/coding/pacman/root/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

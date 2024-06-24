@@ -12,3 +12,7 @@ MainWindow::~MainWindow() {
 void MainWindow::show(){
     SDL_ShowWindow(mWindow);
 }
+
+SDL_Window* MainWindow::getSDL() const{
+    return mWindow;
+}
