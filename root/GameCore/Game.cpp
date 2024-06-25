@@ -23,8 +23,8 @@ void Game::onKeyboard(SDL_Keycode key) {
         onMoveRight();
         break;
     case SDLK_UP:
-        onMoveUp();
-        break;
+      onMoveUp();
+      break;
     case SDLK_DOWN:
         onMoveDown();
         break;

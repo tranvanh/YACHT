@@ -9,6 +9,7 @@
 #include <cassert>
 #include <iostream>
 #include <thread>
+#include <memory>
 
 constexpr int WINDOW_X = 0;
 constexpr int WINDOW_Y = 2500;
@@ -18,16 +19,13 @@ constexpr int WINDOW_H = 480;
 const char* NAME = "PACMAN VOLE";
 
 Application::Application() {
-    mMainWindow = new MainWindow(NAME, WINDOW_X, WINDOW_Y, WINDOW_W, WINDOW_H);
-    mGame = new Game(*this);
-    mRenderer = new Renderer(this);
+    mMainWindow = std::make_shared<MainWindow>(NAME, WINDOW_X, WINDOW_Y, WINDOW_W, WINDOW_H);
+    mGame = std::make_shared<Game>(*this);
+    mRenderer = std::make_shared<Renderer>(this);
     installEventHandlers();
 }
 
 Application::~Application() {
-    delete mMainWindow;
-    delete mRenderer;
-    delete mGame;
     SDL_Quit();
 }
 
@@ -48,11 +46,7 @@ void Application::run() {
 }
 
 void Application::installEventHandlers() {
-    const auto onKeyboard = [this](SDL_Keycode key) {
-        mGame->onKeyboard(key);
-        };
-
     // \todo more universal approach with custom onKeyboard handles
     // Have something like screenManager which switches the handler?
-    mEventPoll.setKeyboardHandler(onKeyboard);
+    mEventPoll.registerHandler(SDL_KEYDOWN, [this](const SDL_Event event) {mGame->onKeyboard(event.key.keysym.sym);});
 }

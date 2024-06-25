@@ -4,8 +4,7 @@
 
 class SDL_Window;
 
-class MainWindow
-{
+class MainWindow {
 private:
     SDL_Window* mWindow;
 
