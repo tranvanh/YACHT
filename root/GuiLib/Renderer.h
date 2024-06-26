@@ -5,10 +5,13 @@ class Application;
 
 class Renderer {
     SDL_Renderer* mRenderer = nullptr;
-    Application* mApplication;
+    Application*  mApplication;
+
 public:
     Renderer(Application* mainWindow);
     ~Renderer() = default;
-    void update();
+    void synchronize();
+
+private:
     void draw();
 };

@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <cassert>
 
 Game::Game(Application& application) : mApplication(application) {
     mPlayer = new Player(50.f, 100.f);
@@ -32,6 +33,7 @@ void Game::onKeyboard(SDL_Keycode key) {
 }
 
 Player& Game::getPlayer()const {
+    assert(mPlayer);
     return *mPlayer;
 }
 

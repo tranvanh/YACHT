@@ -9,7 +9,7 @@ class Application;
 class Game : public Control {
     Player* mPlayer;
     Application& mApplication;
-    
+
 public:
     Game(Application& application);
     ~Game();
