@@ -5,22 +5,24 @@
 
 class MainWindow;
 class Renderer;
-class Game;
+class Layer;
 
 class Application {
-private:
+protected:
     std::shared_ptr<MainWindow> mMainWindow;
     std::shared_ptr<Renderer>   mRenderer;
-    std::shared_ptr<Game>       mGame;
-    EventPoll                   mEventPoll;
+
+    // \todo Add some kind of layer manager
+    std::shared_ptr<Layer> mActiveLayer;
+    EventPoll              mEventPoll;
 
 public:
-    Application();
+    Application(const char* name);
     ~Application();
-    void        run();
-    MainWindow& getMainWindow() const;
-    Game&       getGame() const;
+    void                   run();
+    MainWindow&            getMainWindow() const;
+    std::shared_ptr<Layer> getActiveLayer() const;
 
-private:
-    void installEventHandlers();
+protected:
+    virtual void installEventHandlers() = 0;
 };

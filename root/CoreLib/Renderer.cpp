@@ -1,10 +1,9 @@
 #include "Renderer.h"
-#include "../GameCore/Characters.h"
-#include "../GameCore/Game.h"
-#include "Application.h"
-#include "MainWindow.h"
+#include "../GuiLib/Application.h"
+#include "../GuiLib/Layer.h"
+#include "../GuiLib/MainWindow.h"
+#include "../PacmanApp/Characters.h"
 #include "SDL2/SDL.h"
-
 #include <cassert>
 
 Renderer::Renderer(Application* application)
@@ -23,12 +22,17 @@ void Renderer::synchronize() {
 void Renderer::draw() {
     assert(mApplication);
     assert(mRenderer);
-    const Player& mc = mApplication->getGame().getPlayer();
-    SDL_Rect      rectangle;
-    rectangle.x = mc.position.x;
-    rectangle.y = mc.position.y;
-    rectangle.w = mc.bbox.w;
-    rectangle.h = mc.bbox.h;
+
+    // \todo will get reworked to handle entities and layer content in general manner
+    const auto entityList = mApplication->getActiveLayer()->getEntityList();
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-    SDL_RenderDrawRect(mRenderer, &rectangle);
+
+    for (const auto& entity : entityList) {
+        SDL_Rect rectangle;
+        rectangle.x = entity->position.x;
+        rectangle.y = entity->position.y;
+        rectangle.w = entity->bbox.w;
+        rectangle.h = entity->bbox.h;
+        SDL_RenderDrawRect(mRenderer, &rectangle);
+    }
 }

@@ -1,20 +1,19 @@
 #pragma once
 
-#include "../GuiLib/Control.h"
+#include "../GuiLib/Layer.h"
+#include <memory>
 
 class Player;
 class Application;
 
 // \todo Game will have several screen types?
-class Game : public Control {
-    Player* mPlayer;
-    Application& mApplication;
+class GameLayer : public Layer {
+    std::shared_ptr<Player> mPlayer;
 
 public:
-    Game(Application& application);
-    ~Game();
+    GameLayer(Application& application);
     virtual void onKeyboard(SDL_Keycode key) override;
-    Player& getPlayer() const;
+
 private:
     void onMoveLeft();
     void onMoveRight();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity.h"
+#include "../CoreLib/Entity.h"
 #include "SDL2/SDL_keyboard.h"
 
 class Player : public Entity {
