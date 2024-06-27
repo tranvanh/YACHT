@@ -10,5 +10,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(Pacman main.cpp)
 add_subdirectory(GuiLib)
+add_subdirectory(CoreLib)
+add_subdirectory(PacmanApp)
 
 target_link_libraries(Pacman ${SDL2_LIBRARIES})

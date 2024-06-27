@@ -1,52 +1,42 @@
 #include "Application.h"
+#include "../CoreLib/Renderer.h"
+#include "../GuiLib/Layer.h"
+#include "EventPoll.h"
 #include "MainWindow.h"
 #include "SDL2/SDL.h"
-
 #include <cassert>
-#include <iostream>
+#include <memory>
+#include <thread>
 
-Application::Application() {
-    mMainWindow = new MainWindow("Test", 0, 2500, 640, 480);
+constexpr int WINDOW_X = 0;
+constexpr int WINDOW_Y = 2500;
+constexpr int WINDOW_W = 640;
+constexpr int WINDOW_H = 480;
+
+
+Application::Application(const char* name) {
+    mMainWindow = std::make_shared<MainWindow>(name, WINDOW_X, WINDOW_Y, WINDOW_W, WINDOW_H);
+    mRenderer   = std::make_shared<Renderer>(this);
 }
 
 Application::~Application() {
-    delete mMainWindow;
     SDL_Quit();
 }
 
+MainWindow& Application::getMainWindow() const {
+    return *mMainWindow;
+}
+
+std::shared_ptr<Layer> Application::getActiveLayer() const {
+    return mActiveLayer;
+}
+
 void Application::run() {
+    installEventHandlers();
     mMainWindow->show();
-    while (true) {
-        SDL_Event event;
-        // Start our event loop
-        
-        // \todo Do proper event handling 
-        while (SDL_PollEvent(&event)) {
-            // Handle each specific event
-            if (event.type == SDL_QUIT) {
-                return;
-            }
-
-            if (event.type == SDL_KEYDOWN) {
-                std::string pressed;
-                switch (event.key.keysym.sym) {
-                case SDLK_LEFT:
-                    pressed = "Left";
-                    break;
-                case SDLK_RIGHT:
-                    pressed = "Right";
-                    break;
-                case SDLK_UP:
-                    pressed = "Up";
-                    break;
-                case SDLK_DOWN:
-                    pressed = "Down";
-                    break;
-                }
-                std::cout << pressed << std::endl;
-            }
-
-        }
+    std::thread eventPoll_thread(&EventPoll::run, &mEventPoll);
+    SDL_Delay(1000);
+    while (mEventPoll.isRunning()) {
+        mRenderer->synchronize();
     }
-    std::cout << "After" << std::endl;
 }
