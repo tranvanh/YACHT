@@ -47,7 +47,6 @@ void GameLayer::onMoveRight() {
 void GameLayer::onMoveUp() {
     const Pos                 playerPosition = mPlayer->getPosition();
     const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    std::cout << float(widthHeight.second) << std::endl;
     mPlayer->position.y = std::clamp(playerPosition.y - 10.f, 0.f, float(widthHeight.second));
 }
 void GameLayer::onMoveDown() {
@@ -55,5 +54,4 @@ void GameLayer::onMoveDown() {
     const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
     const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
     mPlayer->position.y = std::clamp(playerPosition.y + 10.f, 0.f, float(widthHeight.second) - playerBbox.h);
-    std::cout << mPlayer->position.y << std::endl;
 }
