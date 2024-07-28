@@ -1,7 +1,6 @@
 #include "GuiLib/Application.h"
 #include "PacmanApp/PacmanApplication.h"
-#include <cassert>
-#include <memory>
+#include "Common.h"
 
 std::shared_ptr<PacmanApplication> createPacmanApplication() {
     return std::make_shared<PacmanApplication>();
@@ -9,7 +8,7 @@ std::shared_ptr<PacmanApplication> createPacmanApplication() {
 
 int main() {
     std::shared_ptr<Application> application = createPacmanApplication();
-    assert(application);
+    CASSERT(application.get(), "Application failed to initialize");
     application->run();
     return 0;
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "EventPoll.h"
-#include <memory>
+#include "Common.h"
 
 class MainWindow;
 class Renderer;

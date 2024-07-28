@@ -1,6 +1,6 @@
-#include "PacmanApplication.h"
-#include "GameLayer.h"
-#include <memory>
+#include "PacmanApp/PacmanApplication.h"
+#include "PacmanApp/GameLayer.h"
+#include "Common.h"
 
 const char* NAME = "PACMAN VOLE";
 

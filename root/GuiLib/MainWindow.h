@@ -1,6 +1,6 @@
 #pragma once
 
-#include <utility>
+#include "Common.h"
 
 class SDL_Window;
 
@@ -13,6 +13,6 @@ public:
     ~MainWindow();
 
     void                show() const;
-    SDL_Window*         getSDL() const;
+    SDL_Window*         sdl() const;
     std::pair<int, int> getWindowSize() const;
 };

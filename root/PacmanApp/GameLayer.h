@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../GuiLib/Layer.h"
-#include <memory>
+#include "GuiLib/Layer.h"
+#include "Common.h"
 
 class Player;
 class Application;
