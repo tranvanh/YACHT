@@ -8,9 +8,10 @@
 
 GameLayer::GameLayer(Application& application)
     : Layer(application) {
-    mPlayer = std::make_shared<Player>(50.f, 100.f);
+    mPlayer = std::make_shared<Player>(Pos(50.f, 100.f));
     mEntityList.push_back(mPlayer);
-    mEntityList.push_back(std::make_shared<Player>(100.f, 50.f));
+    mEntityList.push_back(std::make_shared<StaticItem>(Pos(100.f, 50.f)));
+    mEntityList.push_back(std::make_shared<StaticItem>(Pos(50.f, 200.f)));
 }
 
 void GameLayer::onKeyboard(SDL_Keycode key) {
@@ -29,34 +30,49 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
         onMoveDown();
         break;
     }
+    if(collisionDetected()){
+        std::cout << "HIT!" << std::endl;
+    }
+}
+
+bool GameLayer::collisionDetected() const{
+    // \todo 2024-10 poor man solution, find more efficient solution
+    for(const auto& entity : mEntityList){
+        if(*mPlayer == *entity){
+            continue;
+        }
+        if(mPlayer->collidesWith(*entity)){
+            return true;
+        }
+    }
+    return false;
 }
 
 // \todo DEDUPLICATE THIS SHIT
 void GameLayer::onMoveLeft() {
-    const Pos                 playerPosition = mPlayer->position;
+    const Pos                 playerPosition = mPlayer->getPos();
     const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    mPlayer->position.x = std::clamp(playerPosition.x - 10.f, 0.f, float(widthHeight.first));
+    float x = std::clamp(playerPosition.x - 10.f, 0.f, float(widthHeight.first));
+    mPlayer->setPos(Pos(x, playerPosition.y));
 }
+
 void GameLayer::onMoveRight() {
-    const Pos                 playerPosition = mPlayer->position;
+    const Pos                 playerPosition = mPlayer->getPos();
     const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
     const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    // mPlayer->position.x = std::clamp(playerPosition.x + 10.f, 0.f, float(widthHeight.first) - playerBbox.w);
-    mPlayer->position.x = playerPosition.x + 10.f;
+    mPlayer->setPos(Pos(playerPosition.x + 10.f, playerPosition.y));
+
 }
 void GameLayer::onMoveUp() {
-    const Pos                 playerPosition = mPlayer->position;
+    const Pos                 playerPosition = mPlayer->getPos();
     const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    // mPlayer->position.y = std::clamp(playerPosition.y - 10.f, 0.f, float(widthHeight.second));
-    mPlayer->position.y = playerPosition.y - 10.f;
+    mPlayer->setPos(Pos(playerPosition.x, playerPosition.y - 10.f));
 
 }
 void GameLayer::onMoveDown() {
-    const Pos                 playerPosition = mPlayer->position;
+    const Pos                 playerPosition = mPlayer->getPos();
     const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
     const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    // mPlayer->position.y = std::clamp(playerPosition.y + 10.f, 0.f, float(widthHeight.second) - playerBbox.h);
-    mPlayer->position.y = playerPosition.y + 10.f;
-    std::cout << mPlayer->position.y << std::endl;
+    mPlayer->setPos(Pos(playerPosition.x, playerPosition.y + 10.f));
 
 }

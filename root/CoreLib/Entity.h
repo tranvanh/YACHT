@@ -1,26 +1,12 @@
 #pragma once
 
-#include "BoundingBox.h"
-
 class Renderer;
-struct Pos {
-    float x = 0;
-    float y = 0;
-};
-
+static int g_EntityId = 0;
 class Entity {
+    int mId;
 public:
-    Pos         position;
-
-public:
-    Entity() = delete;
-    explicit Entity(float x, float y)
-        : position({ .x = x, .y = y }) {
-
-        }
-
-    void        setPosition(float x, float y) { position = { .x = x, .y = y }; }
-    BoundingBox getBoundingBox() { return BoundingBox(position.x-10.,position.y-10.,position.x+10,position.y+10); }
-
+    Entity() : mId(g_EntityId++){}
     virtual void render(const Renderer& renderer, const bool drawBbox) = 0;
+    inline bool operator==(const Entity& other) { return mId == other.mId; }
+    inline bool operator!=(const Entity& other) { return mId != other.mId; }
 };

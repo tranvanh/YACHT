@@ -3,24 +3,24 @@
 #include <SDL2/SDL.h>
 
 MainWindow::MainWindow(const char* title, int x, int y, int w, int h) {
-    mWindow = SDL_CreateWindow(title, x, y, w, h, 0);
-    CASSERT(mWindow, "Failed to initialized window");
+    mWindowSdl = SDL_CreateWindow(title, x, y, w, h, 0);
+    CASSERT(mWindowSdl, "Failed to initialized window");
 }
 MainWindow::~MainWindow() {
-    SDL_DestroyWindow(mWindow);
+    SDL_DestroyWindow(mWindowSdl);
 }
 
 void MainWindow::show() const {
-    SDL_ShowWindow(mWindow);
+    SDL_ShowWindow(mWindowSdl);
 }
 
 SDL_Window* MainWindow::sdl() const {
-    return mWindow;
+    return mWindowSdl;
 }
 
 std::pair<int, int> MainWindow::getWindowSize() const {
     int w = 0;
     int h = 0;
-    SDL_GetWindowSize(mWindow, &w, &h);
+    SDL_GetWindowSize(mWindowSdl, &w, &h);
     return { w, h };
 }

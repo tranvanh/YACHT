@@ -1,16 +1,40 @@
 #pragma once
 
-#include "CoreLib/Entity.h"
+#include "CoreLib/SceneNode.h"
 #include "CoreLib/Texture.h"
+#include "PacmanApp/Style.h"
 
-class Player : public Entity {
-    
+class GameEntity : public SceneNode {
+protected:
     // \todo Bi 2024-07 Move to parent inheritance and with general resources list
-    std::shared_ptr<Surface> mSurface = std::make_shared<Surface>("../root/resources/test.png");
+    std::shared_ptr<Surface> mSurface;
+
 public:
-    Player(float x, float y)
-        : Entity(x, y) {
-    }
+    GameEntity(Pos position)
+        : SceneNode(position) {}
+    bool collidesWith(const GameEntity& other) const;
 
     virtual void render(const Renderer& renderer, const bool drawBbox) override;
+protected:
+    Style& style() const { return Style::instance(); }
+};
+
+class StaticItem : public GameEntity {
+public:
+    StaticItem(Pos position)
+        : GameEntity(position) {
+        mSurface = std::make_shared<Surface>(style().RESOURCES.ITEM_SURFACE, *this);
+    }
+
+    virtual BoundingBox getBoundingBox() const override;
+};
+
+class Player : public GameEntity {
+public:
+    Player(Pos position)
+        : GameEntity(position) {
+        mSurface = std::make_shared<Surface>(style().RESOURCES.PLAYER_SURFACE, *this);
+    }
+
+    virtual BoundingBox getBoundingBox() const override;
 };
