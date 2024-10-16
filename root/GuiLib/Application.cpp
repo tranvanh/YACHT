@@ -34,6 +34,7 @@ void Application::run() {
     int flags      = IMG_INIT_PNG;
     int initStatus = IMG_Init(flags);
     // \todo Bi 2024-07 Do custom asserts to handle messages
+    CASSERT(false, "SDL2_Image format not available");
     CASSERT(!((initStatus & flags) != flags), "SDL2_Image format not available");
 
     installEventHandlers();

@@ -1,6 +1,6 @@
+#include "CoreLib/Common.h"
 #include "GuiLib/Application.h"
 #include "PacmanApp/PacmanApplication.h"
-#include "Common.h"
 
 std::shared_ptr<PacmanApplication> createPacmanApplication() {
     return std::make_shared<PacmanApplication>();

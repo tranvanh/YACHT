@@ -4,7 +4,7 @@
 #include "GuiLib/MainWindow.h"
 #include "PacmanApp/Characters.h"
 #include <algorithm>
-#include "Common.h"
+#include "CoreLib/Common.h"
 
 GameLayer::GameLayer(Application& application)
     : Layer(application) {

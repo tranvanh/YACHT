@@ -1,16 +1,9 @@
 #pragma once
-
 #include <iostream>
 #include <memory>
 #include <utility>
 
-
-// \todo FIX THIS SHIT AND MAKE IT WORK
-#ifndef NDEBUG
-#   define CASSERT(Expr, Msg) IMPL_Assert(#   Expr, Expr, __FILE__, __LINE__, Msg)
-#else
-#   define CASSERT(Expr, Msg)
-#endif
+#define CASSERT(Expr, Msg) IMPL_Assert(#Expr, Expr, __FILE__, __LINE__, Msg)
 
 static void IMPL_Assert(const char* expr_str, bool expr, const char* file, int line, const char* msg) {
     if (!expr) {

@@ -1,6 +1,5 @@
 #pragma once
-
-#include "Common.h"
+#include "CoreLib/Common.h"
 
 class SDL_Window;
 

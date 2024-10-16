@@ -1,5 +1,5 @@
 #include "GuiLib/MainWindow.h"
-#include "Common.h"
+#include "CoreLib/Common.h"
 #include <SDL2/SDL.h>
 
 MainWindow::MainWindow(const char* title, int x, int y, int w, int h) {

@@ -1,6 +1,4 @@
 #pragma once
-
-#include "Common.h"
 #include "GuiLib/Layer.h"
 
 class Player;

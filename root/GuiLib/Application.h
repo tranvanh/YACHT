@@ -1,7 +1,6 @@
 #pragma once
-
-#include "EventPoll.h"
-#include "Common.h"
+#include "CoreLib/Common.h"
+#include "GuiLib/EventPoll.h"
 
 class MainWindow;
 class Renderer;
