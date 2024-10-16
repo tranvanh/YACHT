@@ -8,7 +8,7 @@ private:
     SDL_Window* mWindowSdl;
 
 public:
-    MainWindow(const char* title, int x, int y, int w, int h);
+    MainWindow(const char* title, int w, int h);
     ~MainWindow();
 
     void                show() const;

@@ -29,8 +29,11 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
     case SDLK_DOWN:
         onMoveDown();
         break;
+    case SDLK_ESCAPE:
+        mApplication.shutdown();
+        break;
     }
-    if(collisionDetected()){
+    if (collisionDetected()) {
         std::cout << "HIT!" << std::endl;
     }
 }

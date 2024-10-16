@@ -2,8 +2,8 @@
 #include "CoreLib/Common.h"
 #include <SDL2/SDL.h>
 
-MainWindow::MainWindow(const char* title, int x, int y, int w, int h) {
-    mWindowSdl = SDL_CreateWindow(title, x, y, w, h, 0);
+MainWindow::MainWindow(const char* title, int w, int h) {
+    mWindowSdl = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_FULLSCREEN);
     CASSERT(mWindowSdl, "Failed to initialized window");
 }
 MainWindow::~MainWindow() {

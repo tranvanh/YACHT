@@ -1,5 +1,5 @@
-#include "CoreLib/Renderer.h"
 #include "GuiLib/Application.h"
+#include "CoreLib/Renderer.h"
 #include "GuiLib/EventPoll.h"
 #include "GuiLib/Layer.h"
 #include "GuiLib/MainWindow.h"
@@ -7,13 +7,8 @@
 #include "SDL2/SDL_image.h"
 #include <thread>
 
-constexpr int WINDOW_X = 0;
-constexpr int WINDOW_Y = 2500;
-constexpr int WINDOW_W = 640;
-constexpr int WINDOW_H = 480;
-
-Application::Application(const char* name) {
-    mMainWindow = std::make_shared<MainWindow>(name, WINDOW_X, WINDOW_Y, WINDOW_W, WINDOW_H);
+Application::Application(const char* name, const int width, const int height) {
+    mMainWindow = std::make_shared<MainWindow>(name, width, height);
     mRenderer   = std::make_shared<Renderer>(this);
 }
 
@@ -34,14 +29,19 @@ void Application::run() {
     int flags      = IMG_INIT_PNG;
     int initStatus = IMG_Init(flags);
     // \todo Bi 2024-07 Do custom asserts to handle messages
-    CASSERT(false, "SDL2_Image format not available");
     CASSERT(!((initStatus & flags) != flags), "SDL2_Image format not available");
 
     installEventHandlers();
     mMainWindow->show();
     std::thread eventPoll_thread(&EventPoll::run, &mEventPoll);
     SDL_Delay(1000);
-    while (mEventPoll.isRunning()) {
+    mRunning = true;
+    while (mEventPoll.isRunning() && mRunning) {
         mRenderer->synchronize();
     }
+    
+}
+
+void Application::shutdown() {
+    mRunning = false;
 }
