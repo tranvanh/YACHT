@@ -3,9 +3,11 @@
 #include <SDL2/SDL.h>
 
 MainWindow::MainWindow(const char* title, int w, int h) {
-    mWindowSdl = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_FULLSCREEN);
+    mWindowSdl =
+        SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, 0);
     CASSERT(mWindowSdl, "Failed to initialized window");
 }
+
 MainWindow::~MainWindow() {
     SDL_DestroyWindow(mWindowSdl);
 }

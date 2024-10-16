@@ -6,12 +6,15 @@ BoundingBox::BoundingBox(const Pos tL, const Pos bR)
     , bottomRight(bR) {}
 
 bool BoundingBox::collidesWith(const BoundingBox& other) const {
-    return topLeft.x <= other.bottomRight.x && bottomRight.x >= other.topLeft.x &&
-           topLeft.y <= other.bottomRight.y && bottomRight.y >= other.topLeft.y;
+    SDL_Rect thisSdl = sdl();
+    SDL_Rect otherSdl = other.sdl();
+    return SDL_HasIntersection(&thisSdl, &otherSdl);
 }
+
 bool BoundingBox::collision(const BoundingBox& a, const BoundingBox& b) {
     return a.collidesWith(b);
 }
+
 SDL_Rect BoundingBox::sdl() const {
     SDL_Rect rectangle;
     rectangle.x = topLeft.x;
