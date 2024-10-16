@@ -1,10 +1,12 @@
-#include "PacmanApp/GameLayer.h"
+#include "CoreLib/Common.h"
+#include "PacmanApp/Style.h"
 #include "GuiLib/Application.h"
 #include "GuiLib/Layer.h"
 #include "GuiLib/MainWindow.h"
 #include "PacmanApp/Characters.h"
+#include "PacmanApp/GameLayer.h"
+#include "PacmanApp/TileMapLoader.h"
 #include <algorithm>
-#include "CoreLib/Common.h"
 
 GameLayer::GameLayer(Application& application)
     : Layer(application) {
@@ -12,6 +14,10 @@ GameLayer::GameLayer(Application& application)
     mEntityList.push_back(mPlayer);
     mEntityList.push_back(std::make_shared<StaticItem>(Pos(100.f, 50.f)));
     mEntityList.push_back(std::make_shared<StaticItem>(Pos(50.f, 200.f)));
+
+    // \todo use style metrics
+    TileMapLoader tileMapLoader = TileMapLoader(16, 8, 8);
+    mTileMap = tileMapLoader.parse();
 }
 
 void GameLayer::onKeyboard(SDL_Keycode key) {

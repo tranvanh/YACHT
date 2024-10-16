@@ -3,7 +3,7 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
-void GameEntity::render(const Renderer& renderer, const bool drawBbox) {
+void GameEntity::render(const Renderer& renderer, const bool drawBbox) const {
     auto rectangle = getBoundingBox().sdl();
     if (drawBbox) {
         SDL_RenderDrawRect(renderer.sdl(), &rectangle);

@@ -2,6 +2,7 @@
 #include "GuiLib/Layer.h"
 
 class Player;
+class TileMap;
 class Application;
 
 // \todo Game will have several screen types?

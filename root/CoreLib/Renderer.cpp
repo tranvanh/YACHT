@@ -1,6 +1,7 @@
 #include "CoreLib/Renderer.h"
 #include "CoreLib/BoundingBox.h"
 #include "CoreLib/Entity.h"
+#include "CoreLib/TileMap.h"
 #include "CoreLib/Texture.h"
 #include "GuiLib/Application.h"
 #include "GuiLib/Layer.h"
@@ -27,6 +28,7 @@ void Renderer::synchronize() {
     // \todo will get reworked to handle entities and layer content in general manner
     const auto entityList = mApplication->getActiveLayer()->getEntityList();
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    mApplication->getActiveLayer()->getTileMap()->render(*this, SHOW_BOUNDING_BOX);
     for (const auto& entity : entityList) {
         entity->render(*this, SHOW_BOUNDING_BOX);
     }

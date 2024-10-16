@@ -9,7 +9,7 @@ class Renderer;
 class SceneNode;
 
 /// \todo 2024-10 improve the hierarchy for surface, texture, sprite 
-class Surface : Entity{
+class Surface : public Entity{
     SDL_Surface* mSurfaceSdl;
     SceneNode& mSceneNode;
 
@@ -17,7 +17,7 @@ public:
     Surface(const char* filePath, SceneNode& sceneNode);
     ~Surface();
     SDL_Surface* sdl() const;
-    virtual void render(const Renderer& renderer, const bool drawBbox) override;
+    virtual void render(const Renderer& renderer, const bool drawBbox) const override;
 };
 
 class Texture{

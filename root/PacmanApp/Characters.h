@@ -14,7 +14,7 @@ public:
         : SceneNode(position) {}
     bool collidesWith(const GameEntity& other) const;
 
-    virtual void render(const Renderer& renderer, const bool drawBbox) override;
+    virtual void render(const Renderer& renderer, const bool drawBbox) const override;
 protected:
     Style& style() const { return Style::instance(); }
 };

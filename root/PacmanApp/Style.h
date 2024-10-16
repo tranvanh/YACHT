@@ -1,5 +1,12 @@
 #pragma once
 
+struct TileInfo {
+    int         tileId;
+    const char* resource;
+    TileInfo(int id, const char* path)
+        : tileId(id)
+        , resource(path) {}
+};
 class Style {
 private:
     Style() {}
@@ -15,11 +22,11 @@ public:
         // \todo 2024-10 Improve the resources path
         const char* PLAYER_SURFACE = "/home/tranvanh/coding/pacman/root/resources/player.png";
         const char* ITEM_SURFACE   = "/home/tranvanh/coding/pacman/root/resources/item.png";
-        const char* GRASS          = "/home/tranvanh/coding/pacman/root/resources/grass.png";
-        const char* GROUND         = "/home/tranvanh/coding/pacman/root/resources/ground.png";
+        const TileInfo  GROUND         = { 0, "/home/tranvanh/coding/pacman/root/resources/ground.png" };
+        const TileInfo  GRASS          = { 1, "/home/tranvanh/coding/pacman/root/resources/grass.png" };
     } RESOURCES;
-    
-    const struct { const char* TEST_LEVEL = "/home/tranvanh/coding/pacman/root/resources/test.map"; } LEVEL;
+
+    const struct { const char* TEST_LEVEL = "/home/tranvanh/coding/pacman/root/resources/test8x8.map"; } LEVEL;
 
     static Style& instance() {
         static Style style;
