@@ -5,18 +5,21 @@
 #include <memory>
 
 class Application;
-class Entity;
+class GameEntity;
+class TileMap;
 
 class Layer {
 protected:
     Application& mApplication;
+    std::shared_ptr<TileMap> mTileMap;
 
     // \todo do figure out how to store layer content
-    std::list<std::shared_ptr<Entity>> mEntityList;
+    std::list<std::shared_ptr<GameEntity>> mEntityList;
 
 public:
     Layer(Application& application)
         : mApplication(application) {}
-    virtual void                              onKeyboard(SDL_Keycode key) = 0;
-    const std::list<std::shared_ptr<Entity>>& getEntityList() const { return mEntityList; }
+    virtual void                                  onKeyboard(SDL_Keycode key) = 0;
+    const std::list<std::shared_ptr<GameEntity>>& getEntityList() const { return mEntityList; }
+    std::shared_ptr<TileMap>                      getTileMap() const { return mTileMap; }
 };

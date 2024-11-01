@@ -1,4 +1,4 @@
-#include "../GuiLib/Application.h"
+#include "GuiLib/Application.h"
 
 class PacmanApplication : public Application {
 public:

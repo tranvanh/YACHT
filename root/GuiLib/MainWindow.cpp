@@ -1,30 +1,28 @@
-#include "MainWindow.h"
-#include <cassert>
-#include <iostream>
+#include "GuiLib/MainWindow.h"
+#include "CoreLib/Common.h"
 #include <SDL2/SDL.h>
-#include <utility>
 
-MainWindow::MainWindow(const char* title, int x, int y, int w, int h) {
-    mWindow = SDL_CreateWindow(title, x, y, w, h, 0);
+MainWindow::MainWindow(const char* title, int w, int h) {
+    mWindowSdl =
+        SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, 0);
+    CASSERT(mWindowSdl, "Failed to initialized window");
 }
+
 MainWindow::~MainWindow() {
-    SDL_DestroyWindow(mWindow);
+    SDL_DestroyWindow(mWindowSdl);
 }
 
 void MainWindow::show() const {
-    assert(mWindow);
-    SDL_ShowWindow(mWindow);
+    SDL_ShowWindow(mWindowSdl);
 }
 
-SDL_Window* MainWindow::getSDL() const {
-    assert(mWindow);
-    return mWindow;
+SDL_Window* MainWindow::sdl() const {
+    return mWindowSdl;
 }
 
 std::pair<int, int> MainWindow::getWindowSize() const {
-    assert(mWindow);
     int w = 0;
     int h = 0;
-    SDL_GetWindowSize(mWindow, &w, &h);
+    SDL_GetWindowSize(mWindowSdl, &w, &h);
     return { w, h };
 }
