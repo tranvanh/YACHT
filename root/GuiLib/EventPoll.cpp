@@ -1,4 +1,4 @@
-#include "EventPoll.h"
+#include "GuiLib/EventPoll.h"
 #include "SDL2/SDL.h"
 #include <functional>
 #include <iostream>

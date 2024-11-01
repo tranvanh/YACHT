@@ -1,9 +1,8 @@
 #pragma once
-
-#include "../GuiLib/Layer.h"
-#include <memory>
+#include "GuiLib/Layer.h"
 
 class Player;
+class TileMap;
 class Application;
 
 // \todo Game will have several screen types?
@@ -19,4 +18,7 @@ private:
     void onMoveRight();
     void onMoveUp();
     void onMoveDown();
+
+    // \todo 2024-10 Might be needed to move somewhere else with some more general collision manager
+    bool collisionDetected() const;
 };

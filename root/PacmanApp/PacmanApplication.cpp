@@ -1,11 +1,11 @@
-#include "PacmanApplication.h"
-#include "GameLayer.h"
-#include <memory>
-
-const char* NAME = "PACMAN VOLE";
+#include "PacmanApp/PacmanApplication.h"
+#include "PacmanApp/GameLayer.h"
+#include "PacmanApp/Style.h"
 
 PacmanApplication::PacmanApplication()
-    : Application(NAME) {
+    : Application(Style::instance().NAME,
+                  Style::instance().METRICS.WINDOW_W,
+                  Style::instance().METRICS.WINDOW_H) {
     mActiveLayer = std::make_shared<GameLayer>(*this);
 }
 
