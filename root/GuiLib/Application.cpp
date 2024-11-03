@@ -28,7 +28,6 @@ std::shared_ptr<Layer> Application::getActiveLayer() const {
 void Application::run() {
     int flags      = IMG_INIT_PNG;
     int initStatus = IMG_Init(flags);
-    // \todo Bi 2024-07 Do custom asserts to handle messages
     CASSERT(!((initStatus & flags) != flags), "SDL2_Image format not available");
 
     installEventHandlers();
@@ -39,6 +38,7 @@ void Application::run() {
     while (mEventPoll.isRunning() && mRunning) {
         mRenderer->synchronize();
     }
+    eventPoll_thread.join();
     
 }
 
