@@ -33,6 +33,8 @@ void Application::run() {
     installEventHandlers();
     mMainWindow->show();
     std::thread eventPoll_thread(&EventPoll::run, &mEventPoll);
+
+    // \todo remove delay and use some sort of signal
     SDL_Delay(1000);
     mRunning = true;
     while (mEventPoll.isRunning() && mRunning) {

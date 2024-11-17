@@ -29,6 +29,8 @@ void Renderer::synchronize() {
     const auto entityList = mApplication->getActiveLayer()->getEntityList();
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
     mApplication->getActiveLayer()->getTileMap()->render(*this, SHOW_BOUNDING_BOX);
+    
+    // \todo lock to avoid data race
     for (const auto& entity : entityList) {
         entity->render(*this, SHOW_BOUNDING_BOX);
     }
