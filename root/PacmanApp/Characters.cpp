@@ -17,12 +17,16 @@ bool GameEntity::collidesWith(const GameEntity& other) const {
 
 BoundingBox StaticItem::getBoundingBox() const {
     auto& metrics = style().METRICS;
-    return BoundingBox(Pos(mPosition.x - metrics.PLAYER_SIZE, mPosition.y - metrics.PLAYER_SIZE),
-                       Pos(mPosition.x + metrics.PLAYER_SIZE, mPosition.y + metrics.PLAYER_SIZE));
+    Pos position = getPos();
+
+    // \todo use different size
+    return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE, position.y - metrics.PLAYER_SIZE),
+                       Pos(position.x + metrics.PLAYER_SIZE, position.y + metrics.PLAYER_SIZE));
 }
 
 BoundingBox Player::getBoundingBox() const {
     auto& metrics = style().METRICS;
-    return BoundingBox(Pos(mPosition.x - metrics.PLAYER_SIZE, mPosition.y - metrics.PLAYER_SIZE),
-                       Pos(mPosition.x + metrics.PLAYER_SIZE, mPosition.y + metrics.PLAYER_SIZE));
+    Pos position = getPos();
+    return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE, position.y - metrics.PLAYER_SIZE),
+                       Pos(position.x + metrics.PLAYER_SIZE, position.y + metrics.PLAYER_SIZE));
 }

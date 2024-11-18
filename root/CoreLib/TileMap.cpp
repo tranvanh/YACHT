@@ -6,8 +6,9 @@ Tile::Tile(const Pos position, const int width, const char* path)
 }
 
 BoundingBox Tile::getBoundingBox() const{
-    return BoundingBox(Pos(mPosition.x, mPosition.y),
-                       Pos(mPosition.x + mTileSize, mPosition.y + mTileSize));
+    Pos position = getPos();
+    return BoundingBox(Pos(position.x, position.y),
+                       Pos(position.x + mTileSize, position.y + mTileSize));
 }
 void Tile::render(const Renderer& renderer, const bool drawBbox) const {
     mSurface->render(renderer, drawBbox);

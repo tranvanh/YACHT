@@ -15,4 +15,5 @@ struct Pos {
     }
 
     bool operator==(const Pos& other) { return x == other.x && y == other.y; }
+    bool operator!=(const Pos& other) { return !(*this == other); }
 };

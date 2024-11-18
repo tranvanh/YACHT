@@ -2,9 +2,10 @@
 #include "CoreLib/Entity.h"
 #include "CoreLib/BoundingBox.h"
 #include "CoreLib/Position.h"
+#include <mutex>
 
 class SceneNode : public Entity {
-protected:
+private:
     Pos mPosition;
 
 public:
@@ -12,7 +13,13 @@ public:
     SceneNode(Pos position)
         : mPosition(position) {}
 
-    Pos                 getPos() { return mPosition; }
-    void                setPos(const Pos position) { mPosition = position; }
+    Pos getPos() const {
+        std::lock_guard<std::mutex> lock(mLock);
+        return mPosition;
+    }
+    void setPos(const Pos position) {
+        std::lock_guard<std::mutex> lock(mLock);
+        mPosition = position;
+    }
     virtual BoundingBox getBoundingBox() const = 0;
 };

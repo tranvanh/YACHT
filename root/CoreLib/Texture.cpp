@@ -6,7 +6,6 @@
 #include "Common.h"
 #include <memory>
 
-
 Texture::Texture(const Surface& surface, const Renderer& renderer) {
     mTextureSdl = SDL_CreateTextureFromSurface(renderer.sdl(), surface.sdl());
     CASSERT(mTextureSdl, "Failed to load the texture");

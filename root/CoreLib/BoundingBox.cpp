@@ -1,9 +1,12 @@
 #include "CoreLib/BoundingBox.h"
 #include "SDL2/SDL.h"
+#include "Common.h"
 
 BoundingBox::BoundingBox(const Pos tL, const Pos bR)
     : topLeft(tL)
-    , bottomRight(bR) {}
+    , bottomRight(bR) {
+        CASSERT(topLeft != bottomRight, "Invalid bounding box");
+    }
 
 bool BoundingBox::collidesWith(const BoundingBox& other) const {
     SDL_Rect thisSdl = sdl();
