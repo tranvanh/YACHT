@@ -8,7 +8,7 @@
 #include "GuiLib/MainWindow.h"
 #include "PacmanApp/Characters.h"
 #include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
+#include "SDL_image.h"
 #include "Common.h"
 
 Renderer::Renderer(Application* application)

@@ -4,7 +4,7 @@
 #include "GuiLib/Layer.h"
 #include "GuiLib/MainWindow.h"
 #include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
+#include "SDL_image.h"
 #include <thread>
 
 Application::Application(const char* name, const int width, const int height) {
