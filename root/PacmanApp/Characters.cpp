@@ -1,7 +1,7 @@
 #include "PacmanApp/Characters.h"
 #include "CoreLib/Renderer.h"
 #include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
+#include "SDL_image.h"
 
 void GameEntity::render(const Renderer& renderer, const bool drawBbox) const {
     auto rectangle = getBoundingBox().sdl();
