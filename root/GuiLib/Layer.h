@@ -4,7 +4,6 @@
 #include <list>
 #include <memory>
 
-
 YACHT_NAMESPACE_BEGIN
 
 class Application;

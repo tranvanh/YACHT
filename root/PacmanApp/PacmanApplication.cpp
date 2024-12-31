@@ -6,8 +6,8 @@ PACMAN_NAMESPACE_BEGIN
 
 PacmanApplication::PacmanApplication()
     : Application(Style::instance().NAME,
-                  Style::instance().METRICS.WINDOW_W,
-                  Style::instance().METRICS.WINDOW_H) {
+                  Style::instance().LEVEL.MAP_WIDTH*Style::instance().LEVEL.TILE_SIZE,
+                  Style::instance().LEVEL.MAP_HEIGHT*Style::instance().LEVEL.TILE_SIZE) {
     mActiveLayer = std::make_shared<GameLayer>(*this);
 }
 

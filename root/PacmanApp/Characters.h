@@ -18,7 +18,7 @@ public:
 
     virtual void render(const Renderer& renderer, const bool drawBbox) const override;
 protected:
-    Style& style() const { return Style::instance(); }
+    static Style& style() { return Style::instance(); }
 };
 
 class StaticItem : public GameEntity {
@@ -39,6 +39,8 @@ public:
     }
 
     virtual BoundingBox getBoundingBox() const override;
+
+    static BoundingBox getPlayerBoundingBoxForPosition(const Pos& position);
 };
 
 PACMAN_NAMESPACE_END

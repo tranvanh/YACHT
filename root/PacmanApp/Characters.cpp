@@ -28,9 +28,13 @@ BoundingBox StaticItem::getBoundingBox() const {
 
 BoundingBox Player::getBoundingBox() const {
     auto& metrics  = style().METRICS;
-    Pos   position = getPos();
-    return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE, position.y - metrics.PLAYER_SIZE),
-                       Pos(position.x + metrics.PLAYER_SIZE, position.y + metrics.PLAYER_SIZE));
+    return getPlayerBoundingBoxForPosition(getPos());
+}
+
+BoundingBox Player::getPlayerBoundingBoxForPosition(const Pos& position) {
+    auto& metrics  = style().METRICS;
+    return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE*0.5f, position.y - metrics.PLAYER_SIZE*0.5f),
+                       Pos(position.x + metrics.PLAYER_SIZE*0.5f, position.y + metrics.PLAYER_SIZE*0.5f));
 }
 
 PACMAN_NAMESPACE_END

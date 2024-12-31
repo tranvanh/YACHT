@@ -1,29 +1,110 @@
-#include "PacmanApp/Style.h"
+#include "PacmanApp/GameLayer.h"
+#include "CoreLib/SceneNode.h"
 #include "GuiLib/Application.h"
 #include "GuiLib/Layer.h"
 #include "GuiLib/MainWindow.h"
 #include "PacmanApp/Characters.h"
-#include "PacmanApp/GameLayer.h"
+#include "PacmanApp/Style.h"
 #include "PacmanApp/TileMapLoader.h"
-#include "CoreLib/SceneNode.h"
 #include <algorithm>
+#include <optional>
 
 PACMAN_NAMESPACE_BEGIN
 
 GameLayer::GameLayer(Application& application)
     : Layer(application) {
-    mPlayer = std::make_shared<Player>(Pos(50.f, 100.f));
+    mPlayer = std::make_shared<Player>(Pos(200.f, 100.f));
     mEntityList.push_back(mPlayer);
     mEntityList.push_back(std::make_shared<StaticItem>(Pos(100.f, 50.f)));
     mEntityList.push_back(std::make_shared<StaticItem>(Pos(50.f, 200.f)));
 
-    // \todo use style metrics
-    TileMapLoader tileMapLoader = TileMapLoader(16, 8, 8);
-    mTileMap = tileMapLoader.parse();
+    TileMapLoader tileMapLoader = TileMapLoader();
+    mTileMap                    = tileMapLoader.parse();
 }
 
 void GameLayer::onKeyboard(SDL_Keycode key) {
     // \Todo better design for menu, pause menu
+    switch (key) {
+    case SDLK_LEFT:
+    case SDLK_RIGHT:
+    case SDLK_UP:
+    case SDLK_DOWN:
+        onPlayerAction(key);
+        break;
+    case SDLK_ESCAPE:
+        mApplication.shutdown();
+        break;
+    }
+}
+
+std::optional<BoundingBox> GameLayer::testPlayerCollisionAtPosition(const Pos& position) const {
+    // \todo 2024-10 poor man solution, find more efficient solution
+
+    const auto playerBbox = Player::getPlayerBoundingBoxForPosition(position);
+    for (const auto& entity : mEntityList) {
+        if (*mPlayer == *entity) {
+            continue;
+        }
+        if (BoundingBox::collision(playerBbox, entity->getBoundingBox())) {
+            return entity->getBoundingBox();
+        }
+    }
+    if(auto bbox = mTileMap->collidesWith({playerBbox})){
+        return *bbox;
+    }
+    return {};
+}
+
+// \todo DEDUPLICATE THIS SHIT
+// \todo make the boundary control more generic and move to CoreLib?
+void GameLayer::onMoveLeft() {
+    const Pos                 playerPosition = mPlayer->getPos();
+    const auto                newPosition    = Pos(playerPosition.x - 10.f, playerPosition.y);
+    if (auto bbox = testPlayerCollisionAtPosition(newPosition)) {
+        auto& METRICS = Style::instance().METRICS;
+        mPlayer->setPos(Pos(bbox->bottomRight.x + METRICS.PLAYER_SIZE * 0.5f, playerPosition.y));
+    } else {
+        mPlayer->setPos(newPosition);
+    }
+}
+
+void GameLayer::onMoveRight() {
+    const Pos                 playerPosition = mPlayer->getPos();
+    const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
+    const auto                newPosition    = Pos(playerPosition.x + 10.f, playerPosition.y);
+    if (auto bbox = testPlayerCollisionAtPosition(newPosition)) {
+        auto& METRICS = Style::instance().METRICS;
+        mPlayer->setPos(Pos(bbox->topLeft.x - METRICS.PLAYER_SIZE*0.5f,playerPosition.y));
+    }
+    else{
+        mPlayer->setPos(newPosition);
+    }
+}
+void GameLayer::onMoveUp() {
+    const Pos                 playerPosition = mPlayer->getPos();
+    const auto                newPosition    = Pos(playerPosition.x, playerPosition.y - 10.f);
+    if (auto bbox = testPlayerCollisionAtPosition(newPosition)) {
+        auto& METRICS = Style::instance().METRICS;
+        mPlayer->setPos(Pos(playerPosition.x,bbox->bottomRight.y + METRICS.PLAYER_SIZE*0.5f));
+    }
+    else{
+        mPlayer->setPos(newPosition);
+    }
+}
+void GameLayer::onMoveDown() {
+    const Pos                 playerPosition = mPlayer->getPos();
+    const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
+    const auto                newPosition    = Pos(playerPosition.x, playerPosition.y + 10.f);
+    if (auto bbox = testPlayerCollisionAtPosition(newPosition)) {
+        auto& METRICS = Style::instance().METRICS;
+        mPlayer->setPos(Pos(playerPosition.x,bbox->topLeft.y- METRICS.PLAYER_SIZE*0.5f));
+    }
+    else{
+        mPlayer->setPos(newPosition);
+    }
+}
+
+void GameLayer::onPlayerAction(SDL_Keycode key) {
     switch (key) {
     case SDLK_LEFT:
         onMoveLeft();
@@ -37,55 +118,9 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
     case SDLK_DOWN:
         onMoveDown();
         break;
-    case SDLK_ESCAPE:
-        mApplication.shutdown();
-        break;
-    }
-    if (collisionDetected()) {
-        std::cout << "HIT!" << std::endl;
-    }
-}
-
-bool GameLayer::collisionDetected() const{
-    // \todo 2024-10 poor man solution, find more efficient solution
-    for(const auto& entity : mEntityList){
-        if(*mPlayer == *entity){
-            continue;
-        }
-        if(mPlayer->collidesWith(*entity)){
-            return true;
-        }
-    }
-    return false;
-}
-
-// \todo DEDUPLICATE THIS SHIT
-void GameLayer::onMoveLeft() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    float x = std::clamp(playerPosition.x - 10.f, 0.f, float(widthHeight.first));
-    mPlayer->setPos(Pos(x, playerPosition.y));
-}
-
-void GameLayer::onMoveRight() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
-    const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    mPlayer->setPos(Pos(playerPosition.x + 10.f, playerPosition.y));
-
-}
-void GameLayer::onMoveUp() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    mPlayer->setPos(Pos(playerPosition.x, playerPosition.y - 10.f));
-
-}
-void GameLayer::onMoveDown() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
-    const std::pair<int, int> widthHeight    = mApplication.getMainWindow().getWindowSize();
-    mPlayer->setPos(Pos(playerPosition.x, playerPosition.y + 10.f));
-
+    default:
+        CASSERT(false, "No defined movement for the key");
+    };
 }
 
 PACMAN_NAMESPACE_END
