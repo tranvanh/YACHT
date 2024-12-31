@@ -1,4 +1,5 @@
 #include "CoreLib/TileMap.h"
+#include <optional>
 
 YACHT_NAMESPACE_BEGIN
 
@@ -22,8 +23,23 @@ void TileMap::render(const Renderer& renderer, const bool drawBbox) const {
     }
 }
 
-void TileMap::addTile(std::shared_ptr<Tile> tile){
-    mTileList.push_back(tile);
+void TileMap::addTile(const std::shared_ptr<Tile>& tile){
+    mTileList.emplace_back(tile);
+}
+
+void TileMap::addObstacle(const std::shared_ptr<Tile>& tile){
+    mObstacleList.emplace_back(tile);
+}
+
+std::optional<BoundingBox> TileMap::collidesWith(const std::list<BoundingBox>& bboxes) {
+    for (const auto& bbox : bboxes) {
+        for (const auto& obstacle : mObstacleList) {
+            if(BoundingBox::collision(obstacle->getBoundingBox(), bbox)){
+                return obstacle->getBoundingBox();
+            }
+        }
+    }
+    return {};
 }
 
 YACHT_NAMESPACE_END

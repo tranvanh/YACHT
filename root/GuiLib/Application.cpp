@@ -41,9 +41,9 @@ void Application::run() {
     mRunning = true;
     while (mEventPoll.isRunning() && mRunning) {
         mRenderer->synchronize();
+        SDL_Delay(10);
     }
     eventPoll_thread.join();
-    
 }
 
 void Application::shutdown() {

@@ -6,7 +6,7 @@ PACMAN_NAMESPACE_BEGIN
 
 class TileMapLoader : public ITileMapLoader {
 public:
-    TileMapLoader(const int tileSize, const int tileMapWidth, const int tileMapHeight);
+    TileMapLoader();
     virtual std::shared_ptr<YACHT::TileMap> parse() const override;
 };
 

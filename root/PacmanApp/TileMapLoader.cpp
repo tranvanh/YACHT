@@ -9,11 +9,12 @@
 
 PACMAN_NAMESPACE_BEGIN
 
-TileMapLoader::TileMapLoader(const int tileSize, const int tileMapWidth, const int tileMapHeight)
-    : ITileMapLoader(tileSize, tileMapWidth, tileMapHeight) {}
+TileMapLoader::TileMapLoader()
+    : ITileMapLoader(Style::instance().LEVEL.TILE_SIZE, Style::instance().LEVEL.MAP_WIDTH, Style::instance().LEVEL.MAP_HEIGHT) {}
 
 std::shared_ptr<YACHT::TileMap> TileMapLoader::parse() const {
     auto&                                style     = Style::instance();
+    auto& METRICS = style.METRICS;
     auto&                                resources = style.RESOURCES;
     std::unordered_map<int, const char*> tileResources;
 
@@ -31,17 +32,22 @@ std::shared_ptr<YACHT::TileMap> TileMapLoader::parse() const {
     while (mapFile >> line) {
         CASSERT(line.length() / 2 == mTileMapWidth, "Parsing error: tile map width mismatch");
         std::istringstream iss(line);
-        int                tile;
+        int                tileId;
         char               delim;
+        
         // \ todo 2024-10 Needs clean up and better design
-        while (iss >> tile >> delim) {
-            auto tileInfo = tileResources.find(tile);
+        while (iss >> tileId >> delim) {
+            auto tileInfo = tileResources.find(tileId);
             CASSERT(tileInfo != tileResources.end(), "Parsing error: tile id not found");
-            tileMap->addTile(std::make_shared<Tile>(currentPos, 50, tileInfo->second));
-            currentPos.x += 50;
+            auto tile = std::make_shared<Tile>(currentPos, mTileSize, tileInfo->second);
+            tileMap->addTile(tile);
+            currentPos.x += mTileSize;
+            if(tileId == resources.GROUND.tileId){
+                tileMap->addObstacle(tile);
+            }
         }
         currentPos.x = 0.f;
-        currentPos.y += 50;
+        currentPos.y += mTileSize;
     }
     mapFile.close();
     return tileMap;
