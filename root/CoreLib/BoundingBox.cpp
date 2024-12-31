@@ -2,6 +2,8 @@
 #include "SDL2/SDL.h"
 #include "Common.h"
 
+YACHT_NAMESPACE_BEGIN
+
 BoundingBox::BoundingBox(const Pos tL, const Pos bR)
     : topLeft(tL)
     , bottomRight(bR) {
@@ -26,3 +28,5 @@ SDL_Rect BoundingBox::sdl() const {
     rectangle.h = abs(topLeft.y - bottomRight.y);
     return rectangle;
 }
+
+YACHT_NAMESPACE_END

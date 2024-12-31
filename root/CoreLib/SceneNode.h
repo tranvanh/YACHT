@@ -1,8 +1,10 @@
 #pragma once
-#include "CoreLib/Entity.h"
 #include "CoreLib/BoundingBox.h"
+#include "CoreLib/Entity.h"
 #include "CoreLib/Position.h"
 #include <mutex>
+
+YACHT_NAMESPACE_BEGIN
 
 class SceneNode : public Entity {
 private:
@@ -23,3 +25,5 @@ public:
     }
     virtual BoundingBox getBoundingBox() const = 0;
 };
+
+YACHT_NAMESPACE_END

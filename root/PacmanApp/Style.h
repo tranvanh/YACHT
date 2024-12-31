@@ -1,5 +1,7 @@
 #pragma once
 
+PACMAN_NAMESPACE_BEGIN
+
 struct TileInfo {
     int         tileId;
     const char* resource;
@@ -33,3 +35,5 @@ public:
         return style;
     }
 };
+
+PACMAN_NAMESPACE_END

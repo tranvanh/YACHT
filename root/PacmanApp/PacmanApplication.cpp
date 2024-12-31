@@ -2,6 +2,8 @@
 #include "PacmanApp/GameLayer.h"
 #include "PacmanApp/Style.h"
 
+PACMAN_NAMESPACE_BEGIN
+
 PacmanApplication::PacmanApplication()
     : Application(Style::instance().NAME,
                   Style::instance().METRICS.WINDOW_W,
@@ -16,3 +18,5 @@ void PacmanApplication::installEventHandlers() {
         mActiveLayer->onKeyboard(event.key.keysym.sym);
     });
 }
+
+PACMAN_NAMESPACE_END

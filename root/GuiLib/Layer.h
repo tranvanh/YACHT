@@ -4,9 +4,12 @@
 #include <list>
 #include <memory>
 
+
+YACHT_NAMESPACE_BEGIN
+
 class Application;
-class GameEntity;
 class TileMap;
+class SceneNode;
 
 class Layer {
 protected:
@@ -14,12 +17,14 @@ protected:
     std::shared_ptr<TileMap> mTileMap;
 
     // \todo do figure out how to store layer content
-    std::list<std::shared_ptr<GameEntity>> mEntityList;
+    std::list<std::shared_ptr<SceneNode>> mEntityList;
 
 public:
     Layer(Application& application)
         : mApplication(application) {}
     virtual void                                  onKeyboard(SDL_Keycode key) = 0;
-    const std::list<std::shared_ptr<GameEntity>>& getEntityList() const { return mEntityList; }
+    const std::list<std::shared_ptr<SceneNode>>& getEntityList() const { return mEntityList; }
     std::shared_ptr<TileMap>                      getTileMap() const { return mTileMap; }
 };
+
+YACHT_NAMESPACE_END

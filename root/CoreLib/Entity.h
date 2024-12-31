@@ -1,6 +1,8 @@
 #pragma once
 #include <mutex>
 
+YACHT_NAMESPACE_BEGIN
+
 class Renderer;
 static int g_EntityId = 0;
 class Entity {
@@ -16,3 +18,5 @@ public:
     inline bool operator==(const Entity& other) { return mId == other.mId; }
     inline bool operator!=(const Entity& other) { return mId != other.mId; }
 };
+
+YACHT_NAMESPACE_END

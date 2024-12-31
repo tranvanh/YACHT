@@ -7,6 +7,8 @@
 #include "SDL_image.h"
 #include <thread>
 
+YACHT_NAMESPACE_BEGIN
+
 Application::Application(const char* name, const int width, const int height) {
     mMainWindow = std::make_shared<MainWindow>(name, width, height);
     mRenderer   = std::make_shared<Renderer>(this);
@@ -47,3 +49,5 @@ void Application::run() {
 void Application::shutdown() {
     mRunning = false;
 }
+
+YACHT_NAMESPACE_END

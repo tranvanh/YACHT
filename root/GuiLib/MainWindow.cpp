@@ -1,6 +1,7 @@
 #include "GuiLib/MainWindow.h"
-#include "CoreLib/Common.h"
 #include <SDL2/SDL.h>
+
+YACHT_NAMESPACE_BEGIN
 
 MainWindow::MainWindow(const char* title, int w, int h) {
     mWindowSdl =
@@ -26,3 +27,5 @@ std::pair<int, int> MainWindow::getWindowSize() const {
     SDL_GetWindowSize(mWindowSdl, &w, &h);
     return { w, h };
 }
+
+YACHT_NAMESPACE_END

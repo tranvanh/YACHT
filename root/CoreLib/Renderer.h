@@ -1,6 +1,9 @@
 #pragma once
 
 class SDL_Renderer;
+
+YACHT_NAMESPACE_BEGIN
+
 class Application;
 class TextureManager;
 
@@ -20,3 +23,5 @@ public:
 private:
     void drawBoundingBoxes();
 };
+
+YACHT_NAMESPACE_END

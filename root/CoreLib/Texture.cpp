@@ -7,6 +7,8 @@
 #include "Common.h"
 #include <memory>
 
+YACHT_NAMESPACE_BEGIN
+
 Texture::Texture(const Surface& surface, const Renderer& renderer) {
     mTextureSdl = SDL_CreateTextureFromSurface(renderer.sdl(), surface.sdl());
     CASSERT(mTextureSdl, "Failed to load the texture");
@@ -44,3 +46,5 @@ void Surface::render(const Renderer& renderer, const bool drawBbox) const {
     auto texture     = std::make_shared<Texture>(*this, renderer);
     SDL_RenderCopy(renderer.sdl(), texture->sdl(), NULL, &rectangle);
 }
+
+YACHT_NAMESPACE_END

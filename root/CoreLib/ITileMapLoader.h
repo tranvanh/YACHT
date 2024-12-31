@@ -1,6 +1,8 @@
 #pragma once
 #include <memory>
 
+YACHT_NAMESPACE_BEGIN
+
 class TileMap;
 class ITileMapLoader {
 protected:
@@ -15,3 +17,5 @@ public:
         , mTileMapHeight(tileMapHeight) {}
     virtual std::shared_ptr<TileMap> parse() const = 0;
 };
+
+YACHT_NAMESPACE_END

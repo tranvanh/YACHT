@@ -1,7 +1,8 @@
 #pragma once
-#include "CoreLib/Common.h"
 
 class SDL_Window;
+
+YACHT_NAMESPACE_BEGIN
 
 class MainWindow {
 private:
@@ -15,3 +16,5 @@ public:
     SDL_Window*         sdl() const;
     std::pair<int, int> getWindowSize() const;
 };
+
+YACHT_NAMESPACE_END

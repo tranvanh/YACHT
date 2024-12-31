@@ -4,6 +4,8 @@
 #include <iostream>
 #include <unordered_map>
 
+YACHT_NAMESPACE_BEGIN
+
 void EventPoll::run() {
     mRunning = true;
     while (mRunning) {
@@ -30,3 +32,5 @@ void EventPoll::processEvent(const SDL_Event event) const {
         handler->second(event);
     }
 }
+
+YACHT_NAMESPACE_END
