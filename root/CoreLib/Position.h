@@ -1,5 +1,6 @@
 #pragma once
 
+YACHT_NAMESPACE_BEGIN
 struct Pos {
     float x;
     float y;
@@ -17,3 +18,5 @@ struct Pos {
     bool operator==(const Pos& other) { return x == other.x && y == other.y; }
     bool operator!=(const Pos& other) { return !(*this == other); }
 };
+
+YACHT_NAMESPACE_END

@@ -3,7 +3,7 @@
 #include "CoreLib/Texture.h"
 #include <list>
 
-
+YACHT_NAMESPACE_BEGIN
 class Tile : public SceneNode {
     const int                mTileSize;
     std::shared_ptr<Surface> mSurface;
@@ -21,3 +21,5 @@ public:
     virtual void render(const Renderer& renderer, const bool drawBbox) const override;
     void addTile(std::shared_ptr<Tile> tile);
 };
+
+YACHT_NAMESPACE_END

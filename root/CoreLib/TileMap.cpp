@@ -1,5 +1,7 @@
 #include "CoreLib/TileMap.h"
 
+YACHT_NAMESPACE_BEGIN
+
 Tile::Tile(const Pos position, const int width, const char* path)
     : SceneNode(position), mTileSize(width) {
     mSurface = std::make_shared<Surface>(path, *this);
@@ -23,3 +25,5 @@ void TileMap::render(const Renderer& renderer, const bool drawBbox) const {
 void TileMap::addTile(std::shared_ptr<Tile> tile){
     mTileList.push_back(tile);
 }
+
+YACHT_NAMESPACE_END

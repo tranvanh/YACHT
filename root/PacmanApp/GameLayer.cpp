@@ -1,4 +1,3 @@
-#include "CoreLib/Common.h"
 #include "PacmanApp/Style.h"
 #include "GuiLib/Application.h"
 #include "GuiLib/Layer.h"
@@ -6,7 +5,10 @@
 #include "PacmanApp/Characters.h"
 #include "PacmanApp/GameLayer.h"
 #include "PacmanApp/TileMapLoader.h"
+#include "CoreLib/SceneNode.h"
 #include <algorithm>
+
+PACMAN_NAMESPACE_BEGIN
 
 GameLayer::GameLayer(Application& application)
     : Layer(application) {
@@ -85,3 +87,5 @@ void GameLayer::onMoveDown() {
     mPlayer->setPos(Pos(playerPosition.x, playerPosition.y + 10.f));
 
 }
+
+PACMAN_NAMESPACE_END

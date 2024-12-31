@@ -4,7 +4,9 @@
 #include "CoreLib/Texture.h"
 #include "PacmanApp/Style.h"
 
-class GameEntity : public SceneNode {
+PACMAN_NAMESPACE_BEGIN
+
+class GameEntity : public YACHT::SceneNode {
 protected:
     // \todo Bi 2024-07 Move to parent inheritance and with general resources list
     std::shared_ptr<Surface> mSurface;
@@ -12,7 +14,7 @@ protected:
 public:
     GameEntity(Pos position)
         : SceneNode(position) {}
-    bool collidesWith(const GameEntity& other) const;
+    bool collidesWith(const SceneNode& other) const;
 
     virtual void render(const Renderer& renderer, const bool drawBbox) const override;
 protected:
@@ -38,3 +40,5 @@ public:
 
     virtual BoundingBox getBoundingBox() const override;
 };
+
+PACMAN_NAMESPACE_END

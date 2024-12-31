@@ -6,6 +6,8 @@
 #include <functional>
 #include <unordered_map>
 
+YACHT_NAMESPACE_BEGIN
+
 using EventType = Uint32;
 
 class EventPoll {
@@ -21,3 +23,5 @@ public:
 private:
     void processEvent(const SDL_Event event) const;
 };
+
+YACHT_NAMESPACE_END

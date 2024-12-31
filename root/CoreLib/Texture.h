@@ -5,6 +5,9 @@
 
 class SDL_Surface;
 class SDL_Texture;
+
+YACHT_NAMESPACE_BEGIN
+
 class Renderer;
 class SceneNode;
 
@@ -27,3 +30,5 @@ public:
     ~Texture();
     SDL_Texture* sdl() const;
 };
+
+YACHT_NAMESPACE_END

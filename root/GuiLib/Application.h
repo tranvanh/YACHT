@@ -1,6 +1,7 @@
 #pragma once
-#include "CoreLib/Common.h"
 #include "GuiLib/EventPoll.h"
+
+YACHT_NAMESPACE_BEGIN
 
 class MainWindow;
 class Renderer;
@@ -29,3 +30,5 @@ public:
 protected:
     virtual void installEventHandlers() = 0;
 };
+
+YACHT_NAMESPACE_END

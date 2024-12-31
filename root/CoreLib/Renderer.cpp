@@ -11,6 +11,8 @@
 #include "SDL_image.h"
 #include "Common.h"
 
+YACHT_NAMESPACE_BEGIN
+
 Renderer::Renderer(Application* application)
     : mApplication(application) {
     CASSERT(mApplication, "Application is nullptr");
@@ -36,3 +38,5 @@ void Renderer::synchronize() {
     }
     SDL_RenderPresent(mRenderer);
 }
+
+YACHT_NAMESPACE_END

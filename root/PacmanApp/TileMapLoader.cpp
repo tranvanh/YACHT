@@ -1,5 +1,4 @@
 #include "PacmanApp/TileMapLoader.h"
-#include "CoreLib/Common.h"
 #include "CoreLib/ITileMapLoader.h"
 #include "PacmanApp/Style.h"
 #include <fstream>
@@ -8,10 +7,12 @@
 #include <string>
 #include <unordered_map>
 
+PACMAN_NAMESPACE_BEGIN
+
 TileMapLoader::TileMapLoader(const int tileSize, const int tileMapWidth, const int tileMapHeight)
     : ITileMapLoader(tileSize, tileMapWidth, tileMapHeight) {}
 
-std::shared_ptr<TileMap> TileMapLoader::parse() const {
+std::shared_ptr<YACHT::TileMap> TileMapLoader::parse() const {
     auto&                                style     = Style::instance();
     auto&                                resources = style.RESOURCES;
     std::unordered_map<int, const char*> tileResources;
@@ -45,3 +46,5 @@ std::shared_ptr<TileMap> TileMapLoader::parse() const {
     mapFile.close();
     return tileMap;
 }
+
+PACMAN_NAMESPACE_END

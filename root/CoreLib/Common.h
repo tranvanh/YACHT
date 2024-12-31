@@ -3,6 +3,8 @@
 #include <memory>
 #include <utility>
 
+// \todo Bi 2024-12 move the file somewhere else 
+
 #define CASSERT(Expr, Msg) IMPL_Assert(#Expr, Expr, __FILE__, __LINE__, Msg)
 
 static void IMPL_Assert(const char* expr_str, bool expr, const char* file, int line, const char* msg) {
@@ -13,3 +15,9 @@ static void IMPL_Assert(const char* expr_str, bool expr, const char* file, int l
         abort();
     }
 }
+
+#define YACHT_NAMESPACE_BEGIN namespace YACHT{
+#define YACHT_NAMESPACE_END };
+
+#define PACMAN_NAMESPACE_BEGIN namespace YACHT::PACMAN{
+#define PACMAN_NAMESPACE_END };
