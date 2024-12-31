@@ -119,7 +119,7 @@ void GameLayer::onPlayerAction(SDL_Keycode key) {
         onMoveDown();
         break;
     default:
-        CASSERT(false, "No defined movement for the key");
+        CASSERT(false, "No defined action for the key");
     };
 }
 
