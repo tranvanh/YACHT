@@ -20,6 +20,7 @@ bool BoundingBox::collision(const BoundingBox& a, const BoundingBox& b) {
     return a.collidesWith(b);
 }
 
+
 SDL_Rect BoundingBox::sdl() const {
     SDL_Rect rectangle;
     rectangle.x = topLeft.x;

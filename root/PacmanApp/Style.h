@@ -17,6 +17,7 @@ public:
     const char* NAME = "PACMAN VOLE";
     const struct {
         const float PLAYER_SIZE = 44.f;
+        const float MONSTER_SIZE = 34.f;
         const int   WINDOW_W    = 640;
         const int   WINDOW_H    = 480;
     } METRICS;
