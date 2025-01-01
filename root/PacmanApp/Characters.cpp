@@ -22,8 +22,8 @@ BoundingBox StaticItem::getBoundingBox() const {
     Pos   position = getPos();
 
     // \todo use different size
-    return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE, position.y - metrics.PLAYER_SIZE),
-                       Pos(position.x + metrics.PLAYER_SIZE, position.y + metrics.PLAYER_SIZE));
+    return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE*0.5f, position.y - metrics.PLAYER_SIZE*0.5f),
+                       Pos(position.x + metrics.PLAYER_SIZE*0.5f, position.y + metrics.PLAYER_SIZE*0.5f));
 }
 
 BoundingBox Player::getBoundingBox() const {

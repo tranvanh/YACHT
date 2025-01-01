@@ -1,3 +1,4 @@
+#include "GuiLib/Application.h"
 #include "GuiLib/EventPoll.h"
 #include "SDL2/SDL.h"
 #include <functional>
@@ -6,13 +7,15 @@
 
 YACHT_NAMESPACE_BEGIN
 
+EventPoll::EventPoll(Application& application):mApplication(application){}
+
 void EventPoll::run() {
-    mRunning = true;
-    while (mRunning) {
+   
+    while (mApplication.isRunning()) {
         SDL_Event event;
         if (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
-                mRunning = false;
+                mApplication.shutdown();
                 return;
             }
             processEvent(event);

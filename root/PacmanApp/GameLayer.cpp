@@ -14,12 +14,19 @@ PACMAN_NAMESPACE_BEGIN
 GameLayer::GameLayer(Application& application)
     : Layer(application) {
     mPlayer = std::make_shared<Player>(Pos(200.f, 100.f));
-    mEntityList.push_back(mPlayer);
-    mEntityList.push_back(std::make_shared<StaticItem>(Pos(100.f, 50.f)));
-    mEntityList.push_back(std::make_shared<StaticItem>(Pos(50.f, 200.f)));
+    mMonstersList.emplace_back(std::make_shared<StaticItem>(Pos(100.f, 100.f)));
+    mMonstersList.emplace_back(std::make_shared<StaticItem>(Pos(300.f, 150.f)));
+
+    mEntityList.emplace_back(mPlayer);
+    for (const auto& monster : mMonstersList) {
+        mEntityList.emplace_back(monster);
+    }
 
     TileMapLoader tileMapLoader = TileMapLoader();
     mTileMap                    = tileMapLoader.parse();
+    mApplication.runNewThread([this]() {
+        runMonsterLogic();
+    });
 }
 
 void GameLayer::onKeyboard(SDL_Keycode key) {
@@ -121,6 +128,14 @@ void GameLayer::onPlayerAction(SDL_Keycode key) {
     default:
         CASSERT(false, "No defined action for the key");
     };
+}
+
+void GameLayer::runMonsterLogic(){
+    while(mApplication.isRunning()){
+        SDL_Delay(60);
+        auto pos = mMonstersList.front()->getPos();
+        mMonstersList.front()->setPos(Pos(pos.x + 10.f, pos.y));
+    }
 }
 
 PACMAN_NAMESPACE_END
