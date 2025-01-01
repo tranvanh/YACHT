@@ -23,4 +23,4 @@ add_subdirectory(CoreLib)
 add_subdirectory(PacmanApp)
 add_definitions(-include CoreLib/Common.h)
 
-target_link_libraries(Pacman PRIVATE ${SDL_LIBRARIES})
+target_link_libraries(Pacman PRIVATE ${SDL_LIBRARIES} "-Wall -pedantic")

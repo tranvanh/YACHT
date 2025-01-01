@@ -2,6 +2,7 @@
 #include "CoreLib/Renderer.h"
 #include "SDL2/SDL.h"
 #include "SDL_image.h"
+#include <cstdlib>
 
 PACMAN_NAMESPACE_BEGIN
 
@@ -17,21 +18,33 @@ bool GameEntity::collidesWith(const SceneNode& other) const {
     return BoundingBox::collision(getBoundingBox(), other.getBoundingBox());
 }
 
-BoundingBox StaticItem::getBoundingBox() const {
-    auto& metrics  = style().METRICS;
-    Pos   position = getPos();
+BoundingBox Monster::getBoundingBox() const {
+    return getBoundingBoxForPosition(getPos());
+}
 
-    // \todo use different size
-    return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE*0.5f, position.y - metrics.PLAYER_SIZE*0.5f),
-                       Pos(position.x + metrics.PLAYER_SIZE*0.5f, position.y + metrics.PLAYER_SIZE*0.5f));
+Pos Monster::generateNewPosition() const {
+
+    // \todo Bi 2024-12 make proper movement logic
+    Pos currentPos = getPos();
+    bool   isHorizontal = rand() % 2;
+    float* modified     = isHorizontal ? &currentPos.x : &currentPos.y;
+    bool   isPositive   = rand() % 2;
+    *modified += isPositive ? 10.f : -10.f;
+    return currentPos;
+}
+
+BoundingBox Monster::getBoundingBoxForPosition(const Pos& position) const {
+    auto& metrics  = style().METRICS;
+    return BoundingBox(Pos(position.x - metrics.MONSTER_SIZE*0.5f, position.y - metrics.MONSTER_SIZE*0.5f),
+                       Pos(position.x + metrics.MONSTER_SIZE*0.5f, position.y + metrics.MONSTER_SIZE*0.5f));
 }
 
 BoundingBox Player::getBoundingBox() const {
     auto& metrics  = style().METRICS;
-    return getPlayerBoundingBoxForPosition(getPos());
+    return getBoundingBoxForPosition(getPos());
 }
 
-BoundingBox Player::getPlayerBoundingBoxForPosition(const Pos& position) {
+BoundingBox Player::getBoundingBoxForPosition(const Pos& position) const {
     auto& metrics  = style().METRICS;
     return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE*0.5f, position.y - metrics.PLAYER_SIZE*0.5f),
                        Pos(position.x + metrics.PLAYER_SIZE*0.5f, position.y + metrics.PLAYER_SIZE*0.5f));

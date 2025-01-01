@@ -17,18 +17,22 @@ public:
     bool collidesWith(const SceneNode& other) const;
 
     virtual void render(const Renderer& renderer, const bool drawBbox) const override;
+    virtual BoundingBox getBoundingBoxForPosition(const Pos& position) const = 0;
+
 protected:
     static Style& style() { return Style::instance(); }
 };
 
-class StaticItem : public GameEntity {
+class Monster : public GameEntity {
 public:
-    StaticItem(Pos position)
+    Monster(Pos position)
         : GameEntity(position) {
         mSurface = std::make_shared<Surface>(style().RESOURCES.ITEM_SURFACE, *this);
     }
 
     virtual BoundingBox getBoundingBox() const override;
+    Pos generateNewPosition() const;
+    virtual BoundingBox getBoundingBoxForPosition(const Pos& position) const override;
 };
 
 class Player : public GameEntity {
@@ -39,8 +43,7 @@ public:
     }
 
     virtual BoundingBox getBoundingBox() const override;
-
-    static BoundingBox getPlayerBoundingBoxForPosition(const Pos& position);
+    virtual BoundingBox getBoundingBoxForPosition(const Pos& position) const override;
 };
 
 PACMAN_NAMESPACE_END

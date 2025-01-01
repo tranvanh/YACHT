@@ -10,6 +10,7 @@
 YACHT_NAMESPACE_BEGIN
 
 Application::Application(const char* name, const int width, const int height) : mEventPoll(*this) {
+    srand(time(0));
     mMainWindow = std::make_shared<MainWindow>(name, width, height);
     mRenderer   = std::make_shared<Renderer>(this);
 }
