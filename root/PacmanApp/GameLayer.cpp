@@ -63,7 +63,6 @@ void GameLayer::onMoveLeft() {
 
 void GameLayer::onMoveRight() {
     const Pos                 playerPosition = mPlayer->getPos();
-    const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
     const auto                newPosition    = Pos(playerPosition.x + 10.f, playerPosition.y);
     if (auto bbox = testSurroundingCollisionAtPosition(mPlayer->getBoundingBoxForPosition(newPosition))) {
         auto& METRICS = Style::instance().METRICS;
@@ -87,7 +86,6 @@ void GameLayer::onMoveUp() {
 }
 void GameLayer::onMoveDown() {
     const Pos                 playerPosition = mPlayer->getPos();
-    const BoundingBox         playerBbox     = mPlayer->getBoundingBox();
     const auto                newPosition    = Pos(playerPosition.x, playerPosition.y + 10.f);
     if (auto bbox = testSurroundingCollisionAtPosition(mPlayer->getBoundingBoxForPosition(newPosition))) {
         auto& METRICS = Style::instance().METRICS;

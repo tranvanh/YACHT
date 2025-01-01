@@ -14,7 +14,6 @@ TileMapLoader::TileMapLoader()
 
 std::shared_ptr<YACHT::TileMap> TileMapLoader::parse() const {
     auto&                                style     = Style::instance();
-    auto& METRICS = style.METRICS;
     auto&                                resources = style.RESOURCES;
     std::unordered_map<int, const char*> tileResources;
 

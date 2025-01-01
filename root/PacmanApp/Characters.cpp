@@ -40,7 +40,6 @@ BoundingBox Monster::getBoundingBoxForPosition(const Pos& position) const {
 }
 
 BoundingBox Player::getBoundingBox() const {
-    auto& metrics  = style().METRICS;
     return getBoundingBoxForPosition(getPos());
 }
 

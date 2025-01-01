@@ -3,8 +3,8 @@
 #include "CoreLib/BoundingBox.h"
 #include <memory>
 
-class SDL_Surface;
-class SDL_Texture;
+struct SDL_Surface;
+struct SDL_Texture;
 
 YACHT_NAMESPACE_BEGIN
 
@@ -20,10 +20,10 @@ public:
     Surface(const char* filePath, SceneNode& sceneNode);
     ~Surface();
     SDL_Surface* sdl() const;
-    virtual void render(const Renderer& renderer, const bool drawBbox) const override;
+    virtual void render(const Renderer& renderer, [[maybe_unused]] const bool drawBbox) const override;
 };
 
-class Texture{
+class Texture {
     SDL_Texture* mTextureSdl;
 public:
     Texture(const Surface& surface, const Renderer& renderer);

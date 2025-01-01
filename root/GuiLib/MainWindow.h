@@ -1,6 +1,6 @@
 #pragma once
 
-class SDL_Window;
+struct SDL_Window;
 
 YACHT_NAMESPACE_BEGIN
 

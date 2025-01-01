@@ -12,7 +12,7 @@ class SceneNode;
 
 class Layer {
 protected:
-    Application& mApplication;
+    Application&             mApplication;
     std::shared_ptr<TileMap> mTileMap;
 
     // \todo do figure out how to store layer content
@@ -21,9 +21,10 @@ protected:
 public:
     Layer(Application& application)
         : mApplication(application) {}
-    virtual void                                  onKeyboard(SDL_Keycode key) = 0;
+    virtual ~Layer() {}
+    virtual void                                 onKeyboard(SDL_Keycode key) = 0;
     const std::list<std::shared_ptr<SceneNode>>& getEntityList() const { return mEntityList; }
-    std::shared_ptr<TileMap>                      getTileMap() const { return mTileMap; }
+    std::shared_ptr<TileMap>                     getTileMap() const { return mTileMap; }
 };
 
 YACHT_NAMESPACE_END

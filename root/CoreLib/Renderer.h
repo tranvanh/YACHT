@@ -1,6 +1,6 @@
 #pragma once
 
-class SDL_Renderer;
+struct SDL_Renderer;
 
 YACHT_NAMESPACE_BEGIN
 

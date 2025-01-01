@@ -22,5 +22,5 @@ add_subdirectory(GuiLib)
 add_subdirectory(CoreLib)
 add_subdirectory(PacmanApp)
 add_definitions(-include CoreLib/Common.h)
-
-target_link_libraries(Pacman PRIVATE ${SDL_LIBRARIES} "-Wall -pedantic")
+target_compile_options(Pacman PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_link_libraries(Pacman PRIVATE ${SDL_LIBRARIES})

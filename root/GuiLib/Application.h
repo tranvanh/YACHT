@@ -24,7 +24,7 @@ protected:
 
 public:
     Application(const char* name, const int width, const int height);
-    ~Application();
+    virtual ~Application();
     void                   run();
     void                   shutdown();
     MainWindow&            getMainWindow() const;

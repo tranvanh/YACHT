@@ -36,7 +36,7 @@ SDL_Surface* Surface::sdl() const {
     return mSurfaceSdl;
 }
 
-void Surface::render(const Renderer& renderer, const bool drawBbox) const {
+void Surface::render(const Renderer& renderer, [[maybe_unused]] const bool drawBbox) const {
     SDL_Rect    rectangle;
     BoundingBox bbox = mSceneNode.getBoundingBox();
     rectangle.x      = bbox.topLeft.x;
