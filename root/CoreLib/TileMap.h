@@ -23,11 +23,11 @@ protected:
 
 public:
     virtual void render(const Renderer& renderer, const bool drawBbox) const override;
-    
+
     void addTile(const std::shared_ptr<Tile>& tile);
     void addObstacle(const std::shared_ptr<Tile>& tile);
-    
-    std::optional<BoundingBox> collidesWith(const std::list<BoundingBox>& bboxes);
+
+    std::list<std::shared_ptr<Tile>> getCollisionTiles() const { return mObstacleList; }
 };
 
 YACHT_NAMESPACE_END

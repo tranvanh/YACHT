@@ -31,15 +31,4 @@ void TileMap::addObstacle(const std::shared_ptr<Tile>& tile){
     mObstacleList.emplace_back(tile);
 }
 
-std::optional<BoundingBox> TileMap::collidesWith(const std::list<BoundingBox>& bboxes) {
-    for (const auto& bbox : bboxes) {
-        for (const auto& obstacle : mObstacleList) {
-            if(BoundingBox::collision(obstacle->getBoundingBox(), bbox)){
-                return obstacle->getBoundingBox();
-            }
-        }
-    }
-    return {};
-}
-
 YACHT_NAMESPACE_END

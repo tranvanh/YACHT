@@ -1,6 +1,7 @@
 #pragma once
 #include "GuiLib/Layer.h"
 #include "CoreLib/BoundingBox.h"
+#include "CoreLib/CollisionManager.h"
 #include <optional>
 #include <list>
 
@@ -18,6 +19,7 @@ class TileMap;
 class GameLayer : public Layer {
     std::shared_ptr<Player> mPlayer;
     std::list<std::shared_ptr<Monster>> mMonstersList;
+    CollisionManager mCollisionManager;
 
 public:
     GameLayer(Application& application);

@@ -29,11 +29,12 @@ void EventPoll::registerHandler(const EventType eventType, const std::function<v
 
 void EventPoll::processEvent(const SDL_Event event) const {
     const auto handler = mHandlers.find(event.type);
-
     // Check if event handler is present
-    if (handler != mHandlers.end()) {
-        handler->second(event);
+    if (handler == mHandlers.end()) {
+        return;
     }
+    handler->second(event);
+
 }
 
 YACHT_NAMESPACE_END
