@@ -14,6 +14,7 @@ void CollisionManager::registerCollision(const std::list<std::shared_ptr<SceneNo
     }
 }
 
+// separate function, test and clip
 std::shared_ptr<SceneNode> CollisionManager::testCollision(const std::shared_ptr<SceneNode>& node){
     const auto registeredNode = mRegisteredCollisions.find(node->getId());
     // Check if node has any registered collisions
