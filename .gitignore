@@ -5,3 +5,5 @@ CMakeCache.txt
 .vscode/settings.json
 */Makefile
 build
+.DS_Store
+root/.DS_Store
