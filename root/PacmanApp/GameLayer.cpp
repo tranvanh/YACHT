@@ -36,7 +36,7 @@ GameLayer::GameLayer(Application& application)
     mCollisionManager.registerCollision(collisions);
 
     mApplication.runNewThread([this]() {
-        runMonsterLogic();
+        runGame();
     });
 }
 
@@ -47,7 +47,10 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
     case SDLK_RIGHT:
     case SDLK_UP:
     case SDLK_DOWN:
-        onPlayerAction(key);
+    // \todo change into commands
+        mApplication.runNewThread([this, key](){
+            onPlayerAction(key);
+        }); 
         break;
     case SDLK_ESCAPE:
         mApplication.shutdown();
@@ -57,6 +60,7 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
 
 // \todo DEDUPLICATE THIS SHIT
 // \todo make the boundary control more generic and move to CoreLib?
+// move the change to the game thread, just pass the information
 void GameLayer::onMoveLeft() {
     const Pos  playerPosition = mPlayer->getPos();
     const auto newPosition    = Pos(playerPosition.x - 10.f, playerPosition.y);
@@ -111,7 +115,7 @@ void GameLayer::onPlayerAction(SDL_Keycode key) {
     };
 }
 
-void GameLayer::runMonsterLogic() {
+void GameLayer::runGame() {
     while (mApplication.isRunning()) {
         SDL_Delay(60);
         for (auto& monster : mMonstersList) {

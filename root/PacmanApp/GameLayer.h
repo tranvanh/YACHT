@@ -37,7 +37,7 @@ private:
     // returns true on collision
     std::optional<BoundingBox> testSurroundingCollisionAtPosition(const BoundingBox& otherBbox) const;
 
-    void runMonsterLogic();
+    void runGame();
 };
 
 PACMAN_NAMESPACE_END

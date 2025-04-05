@@ -7,19 +7,17 @@
 
 YACHT_NAMESPACE_BEGIN
 
-EventPoll::EventPoll(Application& application):mApplication(application){}
+EventPoll::EventPoll(Application& application)
+    : mApplication(application) {}
 
-void EventPoll::run() {
-   
-    while (mApplication.isRunning()) {
-        SDL_Event event;
-        if (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                mApplication.shutdown();
-                return;
-            }
-            processEvent(event);
+void EventPoll::poll() {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+        if (event.type == SDL_QUIT) {
+            mApplication.shutdown();
+            return;
         }
+        processEvent(event);
     }
 }
 
