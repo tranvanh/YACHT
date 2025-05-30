@@ -1,19 +1,19 @@
 #pragma once
 #include "GuiLib/Layer.h"
-#include "CoreLib/BoundingBox.h"
 #include "CoreLib/CollisionManager.h"
 #include <optional>
 #include <list>
 
 YACHT_NAMESPACE_BEGIN
 class Application;
+// class BoundingBox;
+// class TileMap;
 YACHT_NAMESPACE_END
 
 PACMAN_NAMESPACE_BEGIN
 
 class Player;
 class Monster;
-class TileMap;
 
 // \todo Game will have several screen types?
 class GameLayer : public Layer {
@@ -35,7 +35,7 @@ private:
 
     // \todo 2024-10 Might be needed to move somewhere else with some more general collision manager
     // returns true on collision
-    std::optional<BoundingBox> testSurroundingCollisionAtPosition(const BoundingBox& otherBbox) const;
+    // std::optional<BoundingBox> testSurroundingCollisionAtPosition(const BoundingBox& otherBbox) const;
 
     void runGame();
 };

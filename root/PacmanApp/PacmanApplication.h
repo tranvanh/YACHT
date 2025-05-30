@@ -1,8 +1,9 @@
+#pragma once
 #include "GuiLib/Application.h"
 
 PACMAN_NAMESPACE_BEGIN
 
-class PacmanApplication : public YACHT::Application {
+class PacmanApplication : public Application {
 public:
     PacmanApplication();
 

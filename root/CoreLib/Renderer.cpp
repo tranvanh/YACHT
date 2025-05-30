@@ -27,8 +27,15 @@ SDL_Renderer* Renderer::sdl() const {
 void Renderer::synchronize() {
     SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(mRenderer);
+    // \todo will get reworked to handle entities and layer content in general manner
+    const auto entityList = mApplication->getActiveLayer()->getEntityList();
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-    mApplication->getActiveLayer()->render(*this, SHOW_BOUNDING_BOX);
+    mApplication->getActiveLayer()->getTileMap()->render(*this, SHOW_BOUNDING_BOX);
+    
+    // \todo lock to avoid data race
+    for (const auto& entity : entityList) {
+        entity->render(*this, SHOW_BOUNDING_BOX);
+    }
     SDL_RenderPresent(mRenderer);
 }
 
