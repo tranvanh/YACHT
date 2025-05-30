@@ -15,6 +15,12 @@ struct Pos {
         return *this;
     }
 
+    Pos& operator+=(const Pos& other) {
+        x += other.x;
+        y += other.y;
+        return *this;
+    }
+
     bool operator==(const Pos& other) { return x == other.x && y == other.y; }
     bool operator!=(const Pos& other) { return !(*this == other); }
 };

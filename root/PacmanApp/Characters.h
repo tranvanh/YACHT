@@ -6,7 +6,7 @@
 
 PACMAN_NAMESPACE_BEGIN
 
-class GameEntity : public YACHT::SceneNode {
+class GameEntity : public SceneNode {
 protected:
     // \todo Bi 2024-07 Move to parent inheritance and with general resources list
     std::shared_ptr<Surface> mSurface;

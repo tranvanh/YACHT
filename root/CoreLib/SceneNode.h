@@ -23,6 +23,11 @@ public:
         std::lock_guard<std::mutex> lock(mLock);
         mPosition = position;
     }
+void moveBy(const Pos& pos) {
+        Pos currentPos = getPos();
+        currentPos += pos;
+        setPos(currentPos);
+    }
     virtual BoundingBox getBoundingBox() const = 0;
 };
 
