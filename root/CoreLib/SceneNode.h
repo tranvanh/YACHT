@@ -23,10 +23,10 @@ public:
         std::lock_guard<std::mutex> lock(mLock);
         return mPosition;
     }
-    void setPos(const Pos position) {
+    void setPos(const Pos position, const bool commited = true) {
         std::lock_guard<std::mutex> lock(mLock);
         mPosition = position;
-        dirty = true;
+        dirty = commited;
     }
     void moveBy(const Pos& pos) {
         Pos currentPos = getPos();
@@ -36,6 +36,7 @@ public:
     virtual BoundingBox getBoundingBox() const = 0;
     virtual std::shared_ptr<SceneNode> clone() const = 0;
     bool isDirty() { return dirty;}
+    void setDirty(const bool value) { dirty = value;}
 };
 
 YACHT_NAMESPACE_END

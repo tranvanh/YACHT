@@ -16,7 +16,6 @@ public:
     //
     // \todo Bi 2025-01 if needed return all collision not only first
     std::shared_ptr<SceneNode> testCollision(const std::shared_ptr<SceneNode>& node) const;
-    std::shared_ptr<SceneNode> collideAndClip(const std::shared_ptr<SceneNode>& node);
 };
 
 YACHT_NAMESPACE_END

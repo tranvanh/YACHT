@@ -30,21 +30,4 @@ std::shared_ptr<SceneNode> CollisionManager::testCollision(const std::shared_ptr
     return nullptr;
 }
 
-// separate function, test and clip
-std::shared_ptr<SceneNode> CollisionManager::collideAndClip(const std::shared_ptr<SceneNode>& node){
-    const auto registeredNode = mRegisteredCollisions.find(node->getId());
-    // Check if node has any registered collisions
-    if (registeredNode == mRegisteredCollisions.end()) {
-        return nullptr;
-    }
-
-    for(const auto& collisionNode: registeredNode->second){
-        if(BoundingBox::collision(node->getBoundingBox(), collisionNode->getBoundingBox())){
-            return collisionNode;
-        }
-    }
-    return nullptr;
-}
-
-
 YACHT_NAMESPACE_END

@@ -24,10 +24,9 @@ SDL_Renderer* Renderer::sdl() const {
     return mRenderer;
 }
 
-void Renderer::synchronize( const bool dirtyOnly) {
+void Renderer::synchronize(const bool dirtyOnly) {
     std::lock_guard<std::mutex> guard(mEntities.lock);
-    const auto                  entityList = mApplication->getActiveLayer()->getEntityList();
-    for (const auto& entity : entityList) {
+    for (const auto& entity : mApplication->getActiveLayer()->getEntityList()) {
         if (!dirtyOnly || entity->isDirty()) {
             mEntities.list[entity] = entity->clone();
         }
@@ -48,6 +47,5 @@ void Renderer::render() {
     }
     SDL_RenderPresent(mRenderer);
 }
-
 
 YACHT_NAMESPACE_END
