@@ -37,7 +37,7 @@ protected:
     virtual void installEventHandlers() = 0;
 
 private:
-    void render();
+    void applicationLoop();
     void joinThreads();
 };
 

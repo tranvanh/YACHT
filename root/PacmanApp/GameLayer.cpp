@@ -13,6 +13,9 @@ PACMAN_NAMESPACE_BEGIN
 
 GameLayer::GameLayer(Application& application)
     : Layer(application) {
+
+    std::list<std::shared_ptr<SceneNode>> collisions;
+
     mPlayer = std::make_shared<Player>(Pos(200.f, 100.f));
     mMonstersList.emplace_back(std::make_shared<Monster>(Pos(100.f, 100.f)));
     mMonstersList.emplace_back(std::make_shared<Monster>(Pos(300.f, 150.f)));
@@ -20,12 +23,20 @@ GameLayer::GameLayer(Application& application)
     mEntityList.emplace_back(mPlayer);
     for (const auto& monster : mMonstersList) {
         mEntityList.emplace_back(monster);
+        collisions.emplace_back(monster);
     }
 
     TileMapLoader tileMapLoader = TileMapLoader();
     mTileMap                    = tileMapLoader.parse();
+    for (const auto& tileCollision : mTileMap->getCollisionTiles()) {
+        collisions.emplace_back(tileCollision);
+    }
+
+    collisions.emplace_back(mPlayer);
+    mCollisionManager.registerCollision(collisions);
+
     mApplication.runNewThread([this]() {
-        runMonsterLogic();
+        runGame();
     });
 }
 
@@ -36,7 +47,10 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
     case SDLK_RIGHT:
     case SDLK_UP:
     case SDLK_DOWN:
-        onPlayerAction(key);
+    // \todo change into commands
+        mApplication.runNewThread([this, key](){
+            onPlayerAction(key);
+        }); 
         break;
     case SDLK_ESCAPE:
         mApplication.shutdown();
@@ -44,55 +58,41 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
     }
 }
 
-std::optional<BoundingBox> GameLayer::testSurroundingCollisionAtPosition(const BoundingBox& otherBbox) const {
-    return mTileMap->collidesWith({otherBbox});
-}
-
 // \todo DEDUPLICATE THIS SHIT
 // \todo make the boundary control more generic and move to CoreLib?
+// move the change to the game thread, just pass the information
 void GameLayer::onMoveLeft() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const auto                newPosition    = Pos(playerPosition.x - 10.f, playerPosition.y);
-    if (auto bbox = testSurroundingCollisionAtPosition(mPlayer->getBoundingBoxForPosition(newPosition))) {
-        auto& METRICS = Style::instance().METRICS;
-        mPlayer->setPos(Pos(bbox->bottomRight.x + METRICS.PLAYER_SIZE * 0.5f, playerPosition.y));
-    } else {
-        mPlayer->setPos(newPosition);
+    const Pos  playerPosition = mPlayer->getPos();
+    const auto newPosition    = Pos(playerPosition.x - 10.f, playerPosition.y);
+    mPlayer->setPos(newPosition);
+    if (mCollisionManager.testCollision(mPlayer)) {
+        mPlayer->setPos(playerPosition);
     }
 }
 
 void GameLayer::onMoveRight() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const auto                newPosition    = Pos(playerPosition.x + 10.f, playerPosition.y);
-    if (auto bbox = testSurroundingCollisionAtPosition(mPlayer->getBoundingBoxForPosition(newPosition))) {
-        auto& METRICS = Style::instance().METRICS;
-        mPlayer->setPos(Pos(bbox->topLeft.x - METRICS.PLAYER_SIZE*0.5f,playerPosition.y));
-    }
-    else{
-        mPlayer->setPos(newPosition);
+    const Pos  playerPosition = mPlayer->getPos();
+    const auto newPosition    = Pos(playerPosition.x + 10.f, playerPosition.y);
+    mPlayer->setPos(newPosition);
+    if (mCollisionManager.testCollision(mPlayer)) {
+        mPlayer->setPos(playerPosition);
     }
 }
 
 void GameLayer::onMoveUp() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const auto                newPosition    = Pos(playerPosition.x, playerPosition.y - 10.f);
-    if (auto bbox = testSurroundingCollisionAtPosition(mPlayer->getBoundingBoxForPosition(newPosition))) {
-        auto& METRICS = Style::instance().METRICS;
-        mPlayer->setPos(Pos(playerPosition.x,bbox->bottomRight.y + METRICS.PLAYER_SIZE*0.5f));
-    }
-    else{
-        mPlayer->setPos(newPosition);
+    const Pos  playerPosition = mPlayer->getPos();
+    const auto newPosition    = Pos(playerPosition.x, playerPosition.y - 10.f);
+    mPlayer->setPos(newPosition);
+    if (mCollisionManager.testCollision(mPlayer)) {
+        mPlayer->setPos(playerPosition);
     }
 }
 void GameLayer::onMoveDown() {
-    const Pos                 playerPosition = mPlayer->getPos();
-    const auto                newPosition    = Pos(playerPosition.x, playerPosition.y + 10.f);
-    if (auto bbox = testSurroundingCollisionAtPosition(mPlayer->getBoundingBoxForPosition(newPosition))) {
-        auto& METRICS = Style::instance().METRICS;
-        mPlayer->setPos(Pos(playerPosition.x,bbox->topLeft.y- METRICS.PLAYER_SIZE*0.5f));
-    }
-    else{
-        mPlayer->setPos(newPosition);
+    const Pos  playerPosition = mPlayer->getPos();
+    const auto newPosition    = Pos(playerPosition.x, playerPosition.y + 10.f);
+    mPlayer->setPos(newPosition);
+    if (mCollisionManager.testCollision(mPlayer)) {
+        mPlayer->setPos(playerPosition);
     }
 }
 
@@ -115,15 +115,16 @@ void GameLayer::onPlayerAction(SDL_Keycode key) {
     };
 }
 
-void GameLayer::runMonsterLogic() {
+void GameLayer::runGame() {
     while (mApplication.isRunning()) {
         SDL_Delay(60);
         for (auto& monster : mMonstersList) {
-            auto pos = monster->generateNewPosition();
-            while (auto bbox = testSurroundingCollisionAtPosition(monster->getBoundingBoxForPosition(pos))) {
-                pos = monster->generateNewPosition();
+            const Pos  oldPosition = monster->getPos();
+            monster->setPos(monster->generateNewPosition());
+            while (mCollisionManager.testCollision(monster)) {
+                monster->setPos(oldPosition);
+                monster->setPos(monster->generateNewPosition());
             }
-            monster->setPos(pos);
         }
     }
 }
