@@ -1,4 +1,5 @@
 #include "PacmanApp/GameLayer.h"
+#include "CoreLib/Renderer.h"
 #include "CoreLib/SceneNode.h"
 #include "GuiLib/Application.h"
 #include "GuiLib/Layer.h"
@@ -47,10 +48,8 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
     case SDLK_RIGHT:
     case SDLK_UP:
     case SDLK_DOWN:
-    // \todo change into commands
-        mApplication.runNewThread([this, key](){
-            onPlayerAction(key);
-        }); 
+        // \todo change into commands
+        onPlayerAction(key);
         break;
     case SDLK_ESCAPE:
         mApplication.shutdown();
@@ -64,36 +63,52 @@ void GameLayer::onKeyboard(SDL_Keycode key) {
 void GameLayer::onMoveLeft() {
     const Pos  playerPosition = mPlayer->getPos();
     const auto newPosition    = Pos(playerPosition.x - 10.f, playerPosition.y);
-    mPlayer->setPos(newPosition);
-    if (mCollisionManager.testCollision(mPlayer)) {
-        mPlayer->setPos(playerPosition);
+    mPlayer->setPos(newPosition, false);
+    if (auto collided = mCollisionManager.testCollision(mPlayer)) {
+        auto  bbox      = mPlayer->getBoundingBox();
+        auto  otherBbox = collided->getBoundingBox();
+        float diff      = bbox.horizontalCollisionDiff(otherBbox).value_or(0.f);
+        mPlayer->setPos(Pos(newPosition.x + diff, newPosition.y));
     }
+    mPlayer->setDirty(true);
 }
 
 void GameLayer::onMoveRight() {
     const Pos  playerPosition = mPlayer->getPos();
     const auto newPosition    = Pos(playerPosition.x + 10.f, playerPosition.y);
-    mPlayer->setPos(newPosition);
-    if (mCollisionManager.testCollision(mPlayer)) {
-        mPlayer->setPos(playerPosition);
+    mPlayer->setPos(newPosition, false);
+    if (auto collided = mCollisionManager.testCollision(mPlayer)) {
+        auto  bbox      = mPlayer->getBoundingBox();
+        auto  otherBbox = collided->getBoundingBox();
+        float diff      = bbox.horizontalCollisionDiff(otherBbox).value_or(0.f);
+        mPlayer->setPos(Pos(newPosition.x - diff, newPosition.y));
     }
+    mPlayer->setDirty(true);
 }
 
 void GameLayer::onMoveUp() {
     const Pos  playerPosition = mPlayer->getPos();
     const auto newPosition    = Pos(playerPosition.x, playerPosition.y - 10.f);
-    mPlayer->setPos(newPosition);
-    if (mCollisionManager.testCollision(mPlayer)) {
-        mPlayer->setPos(playerPosition);
+    mPlayer->setPos(newPosition, false);
+    if (auto collided = mCollisionManager.testCollision(mPlayer)) {
+        auto  bbox      = mPlayer->getBoundingBox();
+        auto  otherBbox = collided->getBoundingBox();
+        float diff      = bbox.verticalCollisionDiff(otherBbox).value_or(0.f);
+        mPlayer->setPos(Pos(newPosition.x, newPosition.y + diff));
     }
+    mPlayer->setDirty(true);
 }
 void GameLayer::onMoveDown() {
     const Pos  playerPosition = mPlayer->getPos();
     const auto newPosition    = Pos(playerPosition.x, playerPosition.y + 10.f);
-    mPlayer->setPos(newPosition);
-    if (mCollisionManager.testCollision(mPlayer)) {
-        mPlayer->setPos(playerPosition);
+    mPlayer->setPos(newPosition, false);
+    if (auto collided = mCollisionManager.testCollision(mPlayer)) {
+        auto  bbox      = mPlayer->getBoundingBox();
+        auto  otherBbox = collided->getBoundingBox();
+        float diff      = bbox.verticalCollisionDiff(otherBbox).value_or(0.f);
+        mPlayer->setPos(Pos(newPosition.x, newPosition.y - diff));
     }
+    mPlayer->setDirty(true);
 }
 
 void GameLayer::onPlayerAction(SDL_Keycode key) {
@@ -113,19 +128,21 @@ void GameLayer::onPlayerAction(SDL_Keycode key) {
     default:
         CASSERT(false, "No defined action for the key");
     };
+    mApplication.getRenderer()->synchronize();
 }
 
 void GameLayer::runGame() {
     while (mApplication.isRunning()) {
-        SDL_Delay(60);
+        SDL_Delay(16);
         for (auto& monster : mMonstersList) {
-            const Pos  oldPosition = monster->getPos();
+            const Pos oldPosition = monster->getPos();
             monster->setPos(monster->generateNewPosition());
             while (mCollisionManager.testCollision(monster)) {
                 monster->setPos(oldPosition);
                 monster->setPos(monster->generateNewPosition());
             }
         }
+        mApplication.getRenderer()->synchronize();
     }
 }
 

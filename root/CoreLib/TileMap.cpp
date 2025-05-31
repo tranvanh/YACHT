@@ -17,6 +17,14 @@ void Tile::render(const Renderer& renderer, const bool drawBbox) const {
     mSurface->render(renderer, drawBbox);
 }
 
+ std::shared_ptr<SceneNode> Tile::clone() const{
+    CASSERT(false,"shouldn't be called");
+    return nullptr;
+}
+
+// ====================================================================
+// TileMap
+// ====================================================================
 void TileMap::render(const Renderer& renderer, const bool drawBbox) const {
     for (const auto& tile : mTileList) {
         tile->render(renderer, drawBbox);
