@@ -40,15 +40,15 @@ void Application::run() {
 
     installEventHandlers();
     mMainWindow->show();
-    mThreadPool.emplace_back(std::thread(&EventPoll::run, &mEventPoll));
-    render();
+    applicationLoop();
     joinThreads();
 }
 
-void Application::render() {
+void Application::applicationLoop() {
     while (mRunning) {
+        mEventPoll.poll();
         mRenderer->synchronize();
-        SDL_Delay(10);
+        SDL_Delay(16);
     }
 }
 

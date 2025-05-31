@@ -16,6 +16,8 @@
     }
 }
 
+using EntityId = int;
+
 #define YACHT_NAMESPACE_BEGIN namespace YACHT{
 #define YACHT_NAMESPACE_END };
 

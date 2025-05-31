@@ -20,7 +20,7 @@ private:
 
 public:
     EventPoll(Application& application);
-    void run();
+    void poll();
     bool isRunning() { return mRunning; }
     void registerHandler(const EventType eventType, const std::function<void(SDL_Event)>& handler);
 
