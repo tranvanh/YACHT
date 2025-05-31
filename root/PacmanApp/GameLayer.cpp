@@ -1,5 +1,6 @@
 #include "PacmanApp/GameLayer.h"
 #include "CoreLib/SceneNode.h"
+#include "CoreLib/Renderer.h"
 #include "GuiLib/Application.h"
 #include "GuiLib/Layer.h"
 #include "GuiLib/MainWindow.h"
@@ -113,6 +114,7 @@ void GameLayer::onPlayerAction(SDL_Keycode key) {
     default:
         CASSERT(false, "No defined action for the key");
     };
+    mApplication.getRenderer()->synchronize();
 }
 
 void GameLayer::runGame() {
@@ -126,6 +128,7 @@ void GameLayer::runGame() {
                 monster->setPos(monster->generateNewPosition());
             }
         }
+        mApplication.getRenderer()->synchronize();
     }
 }
 

@@ -33,6 +33,11 @@ Pos Monster::generateNewPosition() const {
     return currentPos;
 }
 
+std::shared_ptr<SceneNode> Monster::clone() const{
+    auto sceneNode = std::make_shared<Monster>(*this);
+    return sceneNode;
+}
+
 BoundingBox Monster::getBoundingBoxForPosition(const Pos& position) const {
     auto& metrics  = style().METRICS;
     return BoundingBox(Pos(position.x - metrics.MONSTER_SIZE*0.5f, position.y - metrics.MONSTER_SIZE*0.5f),
@@ -47,6 +52,11 @@ BoundingBox Player::getBoundingBoxForPosition(const Pos& position) const {
     auto& metrics  = style().METRICS;
     return BoundingBox(Pos(position.x - metrics.PLAYER_SIZE*0.5f, position.y - metrics.PLAYER_SIZE*0.5f),
                        Pos(position.x + metrics.PLAYER_SIZE*0.5f, position.y + metrics.PLAYER_SIZE*0.5f));
+}
+
+std::shared_ptr<SceneNode> Player::clone() const{
+    auto sceneNode = std::make_shared<Player>(*this);
+    return sceneNode;
 }
 
 PACMAN_NAMESPACE_END

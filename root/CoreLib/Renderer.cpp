@@ -1,15 +1,15 @@
 #include "CoreLib/Renderer.h"
+#include "Common.h"
 #include "CoreLib/BoundingBox.h"
 #include "CoreLib/Entity.h"
-#include "CoreLib/TileMap.h"
 #include "CoreLib/Texture.h"
+#include "CoreLib/TileMap.h"
 #include "GuiLib/Application.h"
 #include "GuiLib/Layer.h"
 #include "GuiLib/MainWindow.h"
 #include "PacmanApp/Characters.h"
 #include "SDL2/SDL.h"
 #include "SDL_image.h"
-#include "Common.h"
 
 YACHT_NAMESPACE_BEGIN
 
@@ -24,19 +24,30 @@ SDL_Renderer* Renderer::sdl() const {
     return mRenderer;
 }
 
-void Renderer::synchronize() {
+void Renderer::synchronize( const bool dirtyOnly) {
+    std::lock_guard<std::mutex> guard(mEntities.lock);
+    const auto                  entityList = mApplication->getActiveLayer()->getEntityList();
+    for (const auto& entity : entityList) {
+        if (!dirtyOnly || entity->isDirty()) {
+            mEntities.list[entity] = entity->clone();
+        }
+    }
+}
+
+void Renderer::render() {
     SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(mRenderer);
-    // \todo will get reworked to handle entities and layer content in general manner
-    const auto entityList = mApplication->getActiveLayer()->getEntityList();
+
     SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
     mApplication->getActiveLayer()->getTileMap()->render(*this, SHOW_BOUNDING_BOX);
-    
+
     // \todo lock to avoid data race
-    for (const auto& entity : entityList) {
-        entity->render(*this, SHOW_BOUNDING_BOX);
+    std::lock_guard<std::mutex> guard(mEntities.lock);
+    for (const auto& entity : mEntities.list) {
+        entity.second->render(*this, SHOW_BOUNDING_BOX);
     }
     SDL_RenderPresent(mRenderer);
 }
+
 
 YACHT_NAMESPACE_END
