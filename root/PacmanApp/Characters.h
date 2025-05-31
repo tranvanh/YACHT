@@ -25,6 +25,10 @@ protected:
 
 class Monster : public GameEntity {
 public:
+    Monster(const Monster& other) : GameEntity(other.getPos()){
+         mSurface = std::make_shared<Surface>(style().RESOURCES.ITEM_SURFACE, *this);
+         other.resetDirty();
+    } 
     Monster(Pos position)
         : GameEntity(position) {
         mSurface = std::make_shared<Surface>(style().RESOURCES.ITEM_SURFACE, *this);
@@ -33,10 +37,17 @@ public:
     virtual BoundingBox getBoundingBox() const override;
     Pos generateNewPosition() const;
     virtual BoundingBox getBoundingBoxForPosition(const Pos& position) const override;
+    virtual std::shared_ptr<SceneNode> clone() const override;
 };
 
 class Player : public GameEntity {
 public:
+    Player(const Player& other)
+        : GameEntity(other.getPos()) {
+        mSurface = std::make_shared<Surface>(style().RESOURCES.PLAYER_SURFACE, *this);
+         other.resetDirty();
+
+    }
     Player(Pos position)
         : GameEntity(position) {
         mSurface = std::make_shared<Surface>(style().RESOURCES.PLAYER_SURFACE, *this);
@@ -44,6 +55,7 @@ public:
 
     virtual BoundingBox getBoundingBox() const override;
     virtual BoundingBox getBoundingBoxForPosition(const Pos& position) const override;
+    virtual std::shared_ptr<SceneNode> clone() const override;
 };
 
 PACMAN_NAMESPACE_END

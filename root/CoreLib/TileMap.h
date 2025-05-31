@@ -11,9 +11,11 @@ class Tile : public SceneNode {
     std::shared_ptr<Surface> mSurface;
 
 public:
+    Tile(const Pos position, const int width) : SceneNode(position), mTileSize(width){}
     Tile(const Pos position, const int width, const char* path);
     virtual void render(const Renderer& renderer, const bool drawBbox) const override;
     virtual BoundingBox getBoundingBox() const override;
+    virtual std::shared_ptr<SceneNode> clone() const override;
 };
 
 class TileMap : public Entity {

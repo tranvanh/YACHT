@@ -27,7 +27,6 @@ public:
 
 private:
     void onPlayerAction(SDL_Keycode key);
-
     void onMoveLeft();
     void onMoveRight();
     void onMoveUp();

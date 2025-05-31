@@ -38,6 +38,7 @@ void Application::run() {
     int initStatus = IMG_Init(flags);
     CASSERT(!((initStatus & flags) != flags), "SDL2_Image format not available");
 
+    mRenderer->synchronize(false /*dirtyOnly*/);
     installEventHandlers();
     mMainWindow->show();
     applicationLoop();
@@ -47,7 +48,7 @@ void Application::run() {
 void Application::applicationLoop() {
     while (mRunning) {
         mEventPoll.poll();
-        mRenderer->synchronize();
+        mRenderer->render();
         SDL_Delay(16);
     }
 }

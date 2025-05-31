@@ -30,6 +30,7 @@ public:
     MainWindow&            getMainWindow() const;
     std::shared_ptr<Layer> getActiveLayer() const;
     void                   runNewThread(const std::function<void(void)>& funct);
+    std::shared_ptr<Renderer> getRenderer() const {return mRenderer;}
 
     bool isRunning() const { return mRunning; }
 
